@@ -1,163 +1,316 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aungpao Archive</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aungpao Memo 🐶✨</title>
+    <!-- นำเข้าฟอนต์ Google Fonts ที่มีความเท่และน่ารัก -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Mitr:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* กำหนดตัวแปรสีให้คุมโทน เท่+น่ารัก */
+        :root {
+            --bg-dark: #0f0c1b;      /* สีพื้นหลังมืดๆ เท่ๆ */
+            --bg-card: #1a162e;      /* สีบล็อกข้อมูล */
+            --pink-neon: #ff2a85;     /* สีชมพูนีออนสุดน่ารัก */
+            --purple-cyber: #8a2be2;  /* สีม่วงเท่ๆ */
+            --text-light: #ffffff;
+            --text-gray: #b3b3cc;
+        }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-.hero{
-    background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
-    url("images/cover.jpg");
-    background-size: cover;
-    background-position: center;
-    color:white;
-    text-align:center;
-    padding:120px 20px;
-}
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 80% 20%, rgba(255, 42, 133, 0.15) 0%, transparent 40%),
+                              radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 40%);
+        }
 
-.profile-img{
-    width:220px;
-    height:220px;
-    object-fit:cover;
-    border-radius:50%;
-    border:5px solid white;
-    margin-top:-110px;
-}
+        h1, h2, h3 {
+            font-family: 'Mitr', sans-serif;
+        }
 
-.gallery img{
-    width:100%;
-    height:350px;
-    object-fit:cover;
-    border-radius:12px;
-}
+        /* --- Header Section (ความอลังการเริ่มต้นที่นี่) --- */
+        header {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
 
-.section{
-    padding:60px 0;
-}
+        .header-logo {
+            font-size: 3.5rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--pink-neon), var(--purple-cyber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 42, 133, 0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
 
-footer{
-    background:#111;
-    color:#fff;
-    text-align:center;
-    padding:30px;
-}
-</style>
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--pink-neon);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* --- Main Container --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem 1.5rem;
+        }
+
+        /* --- Profile Card Section --- */
+        .profile-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #251f3d 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 42, 133, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 42, 133, 0.15);
+            border-color: var(--pink-neon);
+        }
+
+        .profile-img-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* กรอบรูปหัวใจ หรือวงกลมเรืองแสง */
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--pink-neon);
+            box-shadow: 0 0 20px rgba(255, 42, 133, 0.5);
+        }
+
+        .profile-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-info p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* --- Memo Grid / Gallery (ส่วนเก็บความทรงจำ) --- */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--pink-neon);
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .memo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .memo-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .memo-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--purple-cyber);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #333; /* ใส่ไว้เป็นสีพื้นหลังระหว่างรอรูป */
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            background: rgba(255, 42, 133, 0.1);
+            color: var(--pink-neon);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- Social Buttons (ปุ่มติดต่อ/ติดตาม) --- */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-social {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--purple-cyber);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-social:hover {
+            background: var(--purple-cyber);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Responsive สำหรับมือถือ */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .header-logo {
+                font-size: 2.5rem;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-<a class="navbar-brand" href="#">Aungpao Archive</a>
-</div>
-</nav>
+    <!-- ส่วนหัวสุดอลังการ -->
+    <header>
+        <h1 class="header-logo">AUNGPAO MEMO</h1>
+        <div class="subtitle">คลังความทรงจำสุดพิเศษของ อังเปา โอชิริส ✨</div>
+    </header>
 
-<section class="hero">
-    <h1 class="display-3 fw-bold">อังเปา</h1>
-    <h3>โอชิริส สุวรรณชีพ</h3>
-    <p>Singer • Idol • Actor</p>
-</section>
+    <div class="container">
+        
+        <!-- ส่วนโปรไฟล์ของอังเปา -->
+        <section class="profile-section">
+            <div class="profile-img-container">
+                <!-- 💡 อย่าลืมเปลี่ยนลิงก์รูปภาพใน src เป็นรูปของอังเปานะครับ -->
+                <img src="https://via.placeholder.com/220" alt="Aungpao Oshiris" class="profile-img">
+            </div>
+            <div class="profile-info">
+                <h2>อังเปา โอชิริส 🐶</h2>
+                <p>ยินดีต้อนรับสู่พื้นที่เก็บโมเมนต์ ความน่ารัก และผลงานของอังเปา โอชิริส หน้าเว็บนี้สร้างขึ้นมาด้วยความรักเพื่อรวบรวมทุกความทรงจำดีๆ เอาไว้ด้วยกัน ไม่ว่าจะสเตจไหน งานไหน ก็ไม่มีพลาด!</p>
+                
+                <!-- ปุ่มช่องทางการติดตาม -->
+                <div class="social-links">
+                    <a href="#" target="_blank" class="btn-social">X (Twitter)</a>
+                    <a href="#" target="_blank" class="btn-social">Instagram</a>
+                </div>
+            </div>
+        </section>
 
-<div class="container text-center">
-    <img src="images/profile.jpg" class="profile-img">
-</div>
+        <!-- ส่วนของบันทึกความทรงจำ / แกลเลอรี -->
+        <section>
+            <h2 class="section-title">My Special Memos</h2>
+            
+            <div class="memo-grid">
+                
+                <!-- การ์ดที่ 1 -->
+                <div class="memo-card">
+                    <!-- 💡 ใส่รูปภาพกิจกรรมตรงนี้ -->
+                    <img src="https://via.placeholder.com/400x200" alt="Memo 1" class="card-img">
+                    <div class="card-content">
+                        <span class="card-tag">First Impression</span>
+                        <h3 class="card-title">วันแรกที่ได้รู้จัก</h3>
+                        <p class="card-text">บันทึกความประทับใจแรก หรือโมเมนต์สุดน่ารักของอังเปาที่ทำให้เราโดนตกเข้าด้อม</p>
+                    </div>
+                </div>
 
-<section class="section">
-<div class="container">
+                <!-- การ์ดที่ 2 -->
+                <div class="memo-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Memo 2" class="card-img">
+                    <div class="card-content">
+                        <span class="card-tag">Stage / Event</span>
+                        <h3 class="card-title">โมเมนต์สุดอลังการ</h3>
+                        <p class="card-text">รวบรวมผลงานการแสดงสุดเท่ หรือลุคที่ชอบที่สุดจากงานอีเวนต์ต่างๆ</p>
+                    </div>
+                </div>
 
-<h2>Biography</h2>
+                <!-- การ์ดที่ 3 -->
+                <div class="memo-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Memo 3" class="card-img">
+                    <div class="card-content">
+                        <span class="card-tag">Daily Cute</span>
+                        <h3 class="card-title">ความสดใสรายวัน</h3>
+                        <p class="card-text">รวมรูปภาพหรือข้อความน่ารักๆ จากโซเชียลมีเดียของอังเปาที่ดูทีไรก็ยิ้มได้</p>
+                    </div>
+                </div>
 
-<p>
-อังเปา โอชิริส สุวรรณชีพ เป็นนักร้อง ไอดอล และนักแสดงชาวไทย
-มีผลงานทั้งด้านการแสดงและดนตรี และเป็นที่รู้จักจากผลงานในสังกัด GMMTV
-</p>
+            </div>
+        </section>
 
-</div>
-</section>
-
-<section class="section bg-light">
-<div class="container">
-
-<h2>Selected Works</h2>
-
-<div class="row mt-4">
-
-<div class="col-md-4">
-<div class="card">
-<div class="card-body">
-<h5>Cooking Crush</h5>
-<p>ผลงานการแสดง</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card">
-<div class="card-body">
-<h5>My Love Mix-Up!</h5>
-<p>ผลงานการแสดง</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card">
-<div class="card-body">
-<h5>Project Alpha</h5>
-<p>รายการและผลงานด้านดนตรี</p>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-
-<h2>Photo Gallery</h2>
-
-<div class="row gallery g-4 mt-2">
-
-<div class="col-md-4">
-<img src="images/gallery1.jpg">
-</div>
-
-<div class="col-md-4">
-<img src="images/gallery2.jpg">
-</div>
-
-<div class="col-md-4">
-<img src="images/gallery3.jpg">
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section class="section bg-light">
-<div class="container">
-
-<h2>Social Media</h2>
-
-<ul>
-<li>Instagram: @20aungpao</li>
-<li>TikTok</li>
-<li>X (Twitter)</li>
-</ul>
-
-</div>
-</section>
-
-<footer>
-<p>This is an unofficial fan-made website.</p>
-<p>Created with GitHub Pages.</p>
-</footer>
+    </div>
 
 </body>
 </html>
