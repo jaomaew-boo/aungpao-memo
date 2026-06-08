@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Mitr:wght@400;600&display=swap" rel="stylesheet">
+    <!-- 🎬 นำเข้า Font Awesome สำหรับแสดงไอคอนถ้วยรางวัล กล้องถ่ายรูป และตัวโน้ตเพลงสุดเท่ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
@@ -63,7 +65,7 @@
             display: inline-block;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
+        .container { max-width: 950px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
 
         /* --- Dropdown / Accordion Style --- */
         .dropdown-wrapper {
@@ -179,9 +181,78 @@
         .card-title { font-size: 1.1rem; margin-bottom: 0.3rem; }
         .card-text { color: var(--text-gray); font-size: 0.85rem; line-height: 1.4; }
 
+        /* ========================================================= */
+        /* 🎨 CSS เพิ่มเติมสำหรับแผงหมวดหมู่ผลงานแยก 6 ช่อง */
+        /* ========================================================= */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .work-category-card {
+            background-color: rgba(25, 20, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--pink-neon);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .work-category-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--pink-neon);
+            box-shadow: 0 5px 15px rgba(255, 42, 133, 0.15);
+        }
+
+        .work-cat-header {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .work-cat-header i {
+            color: var(--pink-neon);
+            font-size: 1.1rem;
+        }
+
+        .work-item-desc {
+            color: var(--text-gray);
+            font-size: 0.88rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .work-btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--blue-neon) !important;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--blue-neon);
+            transition: all 0.3s ease;
+            width: fit-content;
+            margin-top: auto;
+        }
+
+        .work-btn-link:hover {
+            color: var(--pink-neon) !important;
+            border-bottom-color: var(--pink-neon);
+        }
+
         @media (max-width: 768px) {
             .profile-container { flex-direction: column; text-align: center; }
             .social-buttons { flex-direction: column; }
+            .works-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -203,14 +274,15 @@
             </button>
             <div class="dropdown-content">
                 <div class="profile-container">
-                    <!-- 📸 ใส่รูปตรงนี้ -->
+                    <!-- 📸 ใส่รูปโปรไฟล์ของคุณตรงโฟลเดอร์ images -->
                     <img src="images/IMG_3091.JPG" alt="Aungpao" class="profile-img">
                     <div>
                         <h2>อังเปา โอชิริส 🐶</h2>
                         <ul class="info-list">
-                            <li><strong>Birthday:</strong> 20 March 2006</li>
-                            <li><strong>Blood type:</strong> O</li>
-                            <li><strong>Height:</strong> 178 cm <strong>Weight:</strong> 62 kg</li>
+                            <li>Ochiris Suwanacheep</li>
+                            <li><strong>Birthday :</strong> 20 March 2006</li>
+                            <li><strong>Blood type :</strong> O</li>
+                            <li><strong>Height :</strong> 178 cm <strong>Weight :</strong> 62 kg</li>
                             <li><strong>ฉายา:</strong> เจ้าลูกหมานุ่มฟู</li>
                             <li><strong>อาหารโปรด:</strong> เมนูโปรดของน้อง</li>
                             <li><strong>สีที่ชอบ:</strong> สีที่ชอบ</li>
@@ -220,19 +292,106 @@
             </div>
         </div>
 
-        <!-- Dropdown 2: ผลงานโดดเด่น -->
+        <!-- Dropdown 2: ผลงานโดดเด่นแบบอัปเกรดแยกหมวดหมู่เรียบร้อยแล้ว -->
         <div class="dropdown-wrapper">
             <button class="dropdown-btn">
-                <span>🎬 ผลงานเด่นของอังเปา</span>
+                <span>🎬 ผลงานแยกตามหมวดหมู่ (Works)</span>
                 <span class="dropdown-icon">▼</span>
             </button>
             <div class="dropdown-content">
-                <ul class="info-list">
-                    <!-- 🔗 ใส่ลิงก์ผลงานจริงแทนคำว่า # -->
-                    <li><strong>Official MV 1:</strong> เพลงเดบิวต์ <a href="#" target="_blank" class="work-link">[คลิกดูผลงาน]</a></li>
-                    <li><strong>Debut Stage:</strong> สเตจแรกสุดประทับใจ <a href="#" target="_blank" class="work-link">[คลิกดูวิดีโอ]</a></li>
-                    <li><strong>Special Show:</strong> รายการพิเศษ <a href="#" target="_blank" class="work-link">[คลิกดูย้อนหลัง]</a></li>
-                </ul>
+                <div class="works-grid">
+                    
+                    <!-- 1. Survival Show -->
+                    <div class="work-category-card">
+                        <div>
+                            <div class="work-cat-header">
+                                <i class="fa-solid fa-trophy"></i>
+                                <h3>Survival Show</h3>
+                            </div>
+                            <p class="work-item-desc">ผลงานจากรายการแข่งขันล่าฝันอันเป็นจุดเริ่มต้นเส้นภาพศิลปินของอังเปา</p>
+                        </div>
+                        <!-- 🔗 แก้ลิงก์ตรง href="ใส่ลิงก์ที่นี่" ได้เลยครับ -->
+                        <a href="https://www.youtube.com" target="_blank" class="work-btn-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> ดูผลงานย้อนหลัง
+                        </a>
+                    </div>
+
+                    <!-- 2. Series & Acting -->
+                    <div class="work-category-card">
+                        <div>
+                            <div class="work-cat-header">
+                                <i class="fa-solid fa-clapperboard"></i>
+                                <h3>Series / Acting</h3>
+                            </div>
+                            <p class="work-item-desc">บทบาทการแสดงสุดน่ารัก เช่น ซีรีส์ Cooking Crush อาหารเป็นยังไงครับหมอ รับบท ไดนาไมต์</p>
+                        </div>
+                        <!-- 🔗 แก้ลิงก์ตรง href="ใส่ลิงก์ที่นี่" ได้เลยครับ -->
+                        <a href="https://www.youtube.com" target="_blank" class="work-btn-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> รับชมซีรีส์ย้อนหลัง
+                        </a>
+                    </div>
+
+                    <!-- 3. Boy Group (CLO'VER) -->
+                    <div class="work-category-card" style="border-left-color: var(--blue-neon);">
+                        <div>
+                            <div class="work-cat-header" style="color: var(--blue-neon);">
+                                <i class="fa-solid fa-music" style="color: var(--blue-neon);"></i>
+                                <h3>Boy Group (CLO'VER)</h3>
+                            </div>
+                            <p class="work-item-desc">ก้าวสำคัญในฐานะสมาชิกวงบอยกรุ๊ปสังกัด RISER MUSIC ร่วมกับเมมเบอร์สุดปัง</p>
+                        </div>
+                        <!-- 🔗 แก้ลิงก์ตรง href="ใส่ลิงก์ที่นี่" ได้เลยครับ -->
+                        <a href="https://www.youtube.com" target="_blank" class="work-btn-link" style="color: var(--blue-neon) !important; border-bottom-color: var(--blue-neon);">
+                            <i class="fa-solid fa-music"></i> ฟังเพลงที่นี่
+                        </a>
+                    </div>
+
+                    <!-- 4. Event / Show -->
+                    <div class="work-category-card">
+                        <div>
+                            <div class="work-cat-header">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <h3>Event / Show</h3>
+                            </div>
+                            <p class="work-item-desc">งานอีเวนต์ออกงานค่าย มหกรรมสุดยิ่งใหญ่ และไลฟ์พิเศษอื่นๆ ของอังเปา</p>
+                        </div>
+                        <!-- 🔗 แก้ลิงก์ตรง href="ใส่ลิงก์ที่นี่" ได้เลยครับ -->
+                        <a href="https://www.youtube.com" target="_blank" class="work-btn-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> ดูโมเมนต์สำคัญ
+                        </a>
+                    </div>
+
+                    <!-- 5. Festival -->
+                    <div class="work-category-card">
+                        <div>
+                            <div class="work-cat-header">
+                                <i class="fa-solid fa-masks-theater"></i>
+                                <h3>Festival</h3>
+                            </div>
+                            <p class="work-item-desc">งานเทศกาลดนตรีหรืองานเปิดภายนอกที่อังเปาไปส่งพลังความสดใสบนเวทีใหญ่</p>
+                        </div>
+                        <!-- 🔗 แก้ลิงก์ตรง href="ใส่ลิงก์ที่นี่" ได้เลยครับ -->
+                        <a href="https://www.youtube.com" target="_blank" class="work-btn-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> ภาพบรรยากาศ
+                        </a>
+                    </div>
+
+                    <!-- 6. Concert -->
+                    <div class="work-category-card" style="border-left-color: var(--purple-cyber);">
+                        <div>
+                            <div class="work-cat-header" style="color: var(--purple-cyber);">
+                                <i class="fa-solid fa-guitar" style="color: var(--purple-cyber);"></i>
+                                <h3>Concert</h3>
+                            </div>
+                            <p class="work-item-desc">บันทึกเวทีคอนเสิร์ตใหญ่ระดับประวัติศาสตร์ที่อังเปาได้ขึ้นไปส่องประกาย</p>
+                        </div>
+                        <!-- 🔗 แก้ลิงก์ตรง href="ใส่ลิงก์ที่นี่" ได้เลยครับ -->
+                        <a href="https://www.youtube.com" target="_blank" class="work-btn-link" style="color: var(--purple-cyber) !important; border-bottom-color: var(--purple-cyber);">
+                            <i class="fa-solid fa-ticket"></i> คลิปแฟนแคม / บล็อก
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
 
@@ -244,7 +403,6 @@
             </button>
             <div class="dropdown-content">
                 <div class="social-buttons">
-                    <!-- 🔗 ใส่ลิงก์โซเชียลจริงของน้องแทนเครื่องหมาย # -->
                     <a href="https://x.com/20aungpao" target="_blank" class="btn-social x">X (Twitter)</a>
                     <a href="https://www.instagram.com/20aungpao" target="_blank" class="btn-social ig">Instagram</a>
                     <a href="https://www.tiktok.com/@20aungpao" target="_blank" class="btn-social tiktok">TikTok</a>
@@ -297,20 +455,17 @@
             const content = dropdown.querySelector('.dropdown-content');
 
             btn.addEventListener('click', () => {
-                // เช็คว่าตัวที่กดเปิดอยู่แล้วรึเปล่า
                 const isActive = dropdown.classList.contains('active');
                 
-                // สั่งปิดตัวอื่นทั้งหมดก่อน (เปิดได้ทีละอันเพื่อความสวยงาม)
                 dropdowns.forEach(other => {
                     other.classList.remove('active');
                     other.querySelector('.dropdown-content').style.maxHeight = null;
                 });
 
-                // ถ้าตัวที่กดไม่ได้เปิดอยู่ ให้สั่งกางออก
                 if (!isActive) {
                     dropdown.classList.add('active');
-                    // คำนวณความสูงของเนื้อหาจริงเพื่อยืดออกให้พอดีแบบ Smooth
-                    content.style.maxHeight = content.scrollHeight + 100 + "px";
+                    // ปรับขนาดความสูงเผื่อสำหรับการ์ด Grid 6 ช่องด้านในให้ทำงานได้ราบรื่น
+                    content.style.maxHeight = (content.scrollHeight + 150) + "px";
                 }
             });
         });
@@ -318,3 +473,4 @@
 
 </body>
 </html>
+```
