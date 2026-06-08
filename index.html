@@ -4,27 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aungpao Memo 🐶✨</title>
-    <!-- นำเข้าฟอนต์ Google Fonts ที่มีความเท่และน่ารัก -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Mitr:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* กำหนดตัวแปรสีให้คุมโทน เท่+น่ารัก */
         :root {
-            --bg-dark: #0f0c1b;      /* สีพื้นหลังมืดๆ เท่ๆ */
-            --bg-card: #1a162e;      /* สีบล็อกข้อมูล */
-            --pink-neon: #ff2a85;     /* สีชมพูนีออนสุดน่ารัก */
-            --purple-cyber: #8a2be2;  /* สีม่วงเท่ๆ */
+            --bg-dark: #0f0c1b;
+            --bg-card: #1a162e;
+            --pink-neon: #ff2a85;
+            --purple-cyber: #8a2be2;
             --text-light: #ffffff;
             --text-gray: #b3b3cc;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Kanit', sans-serif;
@@ -35,20 +29,16 @@
                               radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 40%);
         }
 
-        h1, h2, h3 {
-            font-family: 'Mitr', sans-serif;
-        }
+        h1, h2, h3 { font-family: 'Mitr', sans-serif; }
 
-        /* --- Header Section (ความอลังการเริ่มต้นที่นี่) --- */
         header {
-            min-height: 60vh;
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 2rem;
-            position: relative;
         }
 
         .header-logo {
@@ -71,25 +61,19 @@
             display: inline-block;
         }
 
-        /* --- Main Container --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem 5rem 1.5rem;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
 
-        /* --- Profile Card Section --- */
         .profile-section {
             background: linear-gradient(135deg, var(--bg-card) 0%, #251f3d 100%);
             border-radius: 24px;
             padding: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid rgba(255, 42, 133, 0.2);
             display: flex;
             align-items: center;
             gap: 3rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .profile-section:hover {
@@ -98,12 +82,8 @@
             border-color: var(--pink-neon);
         }
 
-        .profile-img-container {
-            position: relative;
-            flex-shrink: 0;
-        }
+        .profile-img-container { flex-shrink: 0; }
 
-        /* กรอบรูปหัวใจ หรือวงกลมเรืองแสง */
         .profile-img {
             width: 220px;
             height: 220px;
@@ -113,37 +93,12 @@
             box-shadow: 0 0 20px rgba(255, 42, 133, 0.5);
         }
 
-        .profile-info h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .profile-info h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .profile-info p { color: var(--text-gray); line-height: 1.8; margin-bottom: 1.5rem; }
 
-        .profile-info p {
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        /* --- Memo Grid / Gallery (ส่วนเก็บความทรงจำ) --- */
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-        }
+        .section-title { font-size: 1.8rem; margin-bottom: 2rem; text-align: center; }
         .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background: var(--pink-neon);
-            margin: 8px auto 0 auto;
-            border-radius: 2px;
+            content: ''; display: block; width: 50px; height: 4px; background: var(--pink-neon); margin: 8px auto 0 auto; border-radius: 2px;
         }
 
         .memo-grid {
@@ -166,85 +121,36 @@
             box-shadow: 0 10px 25px rgba(138, 43, 226, 0.2);
         }
 
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #333; /* ใส่ไว้เป็นสีพื้นหลังระหว่างรอรูป */
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
+        .card-img { width: 100%; height: 210px; object-fit: cover; background-color: #221d3a; }
+        .card-content { padding: 1.5rem; }
         .card-tag {
-            background: rgba(255, 42, 133, 0.1);
-            color: var(--pink-neon);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 0.8rem;
+            background: rgba(255, 42, 133, 0.1); color: var(--pink-neon);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 0.8rem;
         }
 
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
+        .card-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .card-text { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
 
-        .card-text {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* --- Social Buttons (ปุ่มติดต่อ/ติดตาม) --- */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
+        .social-links { display: flex; gap: 1rem; }
         .btn-social {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--purple-cyber);
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            background: transparent; color: var(--text-light); border: 2px solid var(--purple-cyber);
+            padding: 0.6rem 1.2rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
         }
 
         .btn-social:hover {
-            background: var(--purple-cyber);
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
-            transform: scale(1.05);
+            background: var(--purple-cyber); box-shadow: 0 0 15px rgba(138, 43, 226, 0.6); transform: scale(1.05);
         }
 
-        /* Responsive สำหรับมือถือ */
         @media (max-width: 768px) {
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-            }
-            .header-logo {
-                font-size: 2.5rem;
-            }
-            .social-links {
-                justify-content: center;
-            }
+            .profile-section { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .header-logo { font-size: 2.5rem; }
+            .social-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ส่วนหัวสุดอลังการ -->
     <header>
         <h1 class="header-logo">AUNGPAO MEMO</h1>
         <div class="subtitle">คลังความทรงจำสุดพิเศษของ อังเปา โอชิริส ✨</div>
@@ -252,18 +158,18 @@
 
     <div class="container">
         
-        <!-- ส่วนโปรไฟล์ของอังเปา -->
+        <!-- ส่วนโปรไฟล์ -->
         <section class="profile-section">
             <div class="profile-img-container">
-                <!-- 💡 อย่าลืมเปลี่ยนลิงก์รูปภาพใน src เป็นรูปของอังเปานะครับ -->
+                <!-- 📸 เปลี่ยนรูปโปรไฟล์ตรง src ด้านล่างนี้ได้เลยครับ -->
                 <img src="https://via.placeholder.com/220" alt="Aungpao Oshiris" class="profile-img">
             </div>
             <div class="profile-info">
                 <h2>อังเปา โอชิริส 🐶</h2>
                 <p>ยินดีต้อนรับสู่พื้นที่เก็บโมเมนต์ ความน่ารัก และผลงานของอังเปา โอชิริส หน้าเว็บนี้สร้างขึ้นมาด้วยความรักเพื่อรวบรวมทุกความทรงจำดีๆ เอาไว้ด้วยกัน ไม่ว่าจะสเตจไหน งานไหน ก็ไม่มีพลาด!</p>
                 
-                <!-- ปุ่มช่องทางการติดตาม -->
                 <div class="social-links">
+                    <!-- 🔗 ใส่ลิงก์โซเชียลของอังเปาตรงคำว่า # ได้เลยครับ -->
                     <a href="#" target="_blank" class="btn-social">X (Twitter)</a>
                     <a href="#" target="_blank" class="btn-social">Instagram</a>
                 </div>
@@ -278,7 +184,7 @@
                 
                 <!-- การ์ดที่ 1 -->
                 <div class="memo-card">
-                    <!-- 💡 ใส่รูปภาพกิจกรรมตรงนี้ -->
+                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
                     <img src="https://via.placeholder.com/400x200" alt="Memo 1" class="card-img">
                     <div class="card-content">
                         <span class="card-tag">First Impression</span>
@@ -289,9 +195,10 @@
 
                 <!-- การ์ดที่ 2 -->
                 <div class="memo-card">
+                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
                     <img src="https://via.placeholder.com/400x200" alt="Memo 2" class="card-img">
                     <div class="card-content">
-                        <span class="card-tag">Stage / Event</span>
+                        <span class="card-track">Stage / Event</span>
                         <h3 class="card-title">โมเมนต์สุดอลังการ</h3>
                         <p class="card-text">รวบรวมผลงานการแสดงสุดเท่ หรือลุคที่ชอบที่สุดจากงานอีเวนต์ต่างๆ</p>
                     </div>
@@ -299,11 +206,23 @@
 
                 <!-- การ์ดที่ 3 -->
                 <div class="memo-card">
+                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
                     <img src="https://via.placeholder.com/400x200" alt="Memo 3" class="card-img">
                     <div class="card-content">
                         <span class="card-tag">Daily Cute</span>
                         <h3 class="card-title">ความสดใสรายวัน</h3>
                         <p class="card-text">รวมรูปภาพหรือข้อความน่ารักๆ จากโซเชียลมีเดียของอังเปาที่ดูทีไรก็ยิ้มได้</p>
+                    </div>
+                </div>
+
+                <!-- ยอดเยี่ยม! ผมเพิ่มการ์ดใบที่ 4 รอไว้ให้แล้วครับ คุณแต่งข้อมูลต่อได้เลย -->
+                <div class="memo-card">
+                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
+                    <img src="https://via.placeholder.com/400x200" alt="Memo 4" class="card-img">
+                    <div class="card-content">
+                        <span class="card-tag">Favorite Song</span>
+                        <h3 class="card-title">เพลงโปรด/ท่อนร้องในตำนาน</h3>
+                        <p class="card-text">เอาไว้บันทึกเนื้อเพลง ซีนใน MV หรือท่อนไฮไลต์ที่คุณชอบฟังบ่อยๆ</p>
                     </div>
                 </div>
 
