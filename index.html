@@ -14,6 +14,7 @@
             --bg-card: #1a162e;
             --pink-neon: #ff2a85;
             --purple-cyber: #8a2be2;
+            --blue-neon: #00f0ff;
             --text-light: #ffffff;
             --text-gray: #b3b3cc;
         }
@@ -31,6 +32,7 @@
 
         h1, h2, h3 { font-family: 'Mitr', sans-serif; }
 
+        /* --- Header / Cover Section (หน้าปกสุดอลังการ) --- */
         header {
             min-height: 50vh;
             display: flex;
@@ -42,14 +44,14 @@
         }
 
         .header-logo {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 600;
             background: linear-gradient(45deg, var(--pink-neon), var(--purple-cyber));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 42, 133, 0.3);
+            text-shadow: 0 0 30px rgba(255, 42, 133, 0.4);
             margin-bottom: 0.5rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .subtitle {
@@ -61,96 +63,131 @@
             display: inline-block;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
 
-        .profile-section {
-            background: linear-gradient(135deg, var(--bg-card) 0%, #251f3d 100%);
-            border-radius: 24px;
-            padding: 2.5rem;
-            margin-bottom: 4rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255, 42, 133, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            transition: all 0.3s ease;
-        }
-
-        .profile-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 42, 133, 0.15);
-            border-color: var(--pink-neon);
-        }
-
-        .profile-img-container { flex-shrink: 0; }
-
-        .profile-img {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--pink-neon);
-            box-shadow: 0 0 20px rgba(255, 42, 133, 0.5);
-        }
-
-        .profile-info h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .profile-info p { color: var(--text-gray); line-height: 1.8; margin-bottom: 1.5rem; }
-
-        .section-title { font-size: 1.8rem; margin-bottom: 2rem; text-align: center; }
-        .section-title::after {
-            content: ''; display: block; width: 50px; height: 4px; background: var(--pink-neon); margin: 8px auto 0 auto; border-radius: 2px;
-        }
-
-        .memo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .memo-card {
+        /* --- Dropdown / Accordion Style --- */
+        .dropdown-wrapper {
+            margin-bottom: 1.5rem;
             background-color: var(--bg-card);
             border-radius: 16px;
+            border: 1px solid rgba(255, 42, 133, 0.1);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
 
-        .memo-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--purple-cyber);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.2);
+        /* ปุ่มหัวข้อสำหรับกด Dropdown */
+        .dropdown-btn {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.3rem;
+            font-family: 'Mitr', sans-serif;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
         }
 
-        .card-img { width: 100%; height: 210px; object-fit: cover; background-color: #221d3a; }
-        .card-content { padding: 1.5rem; }
-        .card-tag {
-            background: rgba(255, 42, 133, 0.1); color: var(--pink-neon);
-            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 0.8rem;
+        .dropdown-btn:hover {
+            background: rgba(255, 42, 133, 0.05);
+            color: var(--pink-neon);
         }
 
-        .card-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
-        .card-text { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
+        /* สัญลักษณ์ลูกศรดรอปดาวน์ */
+        .dropdown-icon {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+            color: var(--pink-neon);
+        }
 
-        .social-links { display: flex; gap: 1rem; }
+        /* ส่วนเนื้อหาข้างในที่จะซ่อนไว้ตอนแรก */
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            padding: 0 1.5rem;
+            background: rgba(15, 12, 27, 0.5);
+        }
+
+        /* คลาสสิกสำหรับการเปิดออก (ทำงานร่วมกับ JS) */
+        .dropdown-wrapper.active {
+            border-color: var(--pink-neon);
+            box-shadow: 0 0 20px rgba(255, 42, 133, 0.15);
+        }
+
+        .dropdown-wrapper.active .dropdown-content {
+            padding: 1.5rem; /* เพิ่มพื้นที่กางออก */
+        }
+
+        .dropdown-wrapper.active .dropdown-icon {
+            transform: rotate(180deg); /* หมุนลูกศรชี้ขึ้น */
+        }
+
+        /* --- ตกแต่งเนื้อหาข้างในดรอปดาวน์แต่ละอัน --- */
+        
+        /* 1. ส่วนโปรไฟล์และประวัติ */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .profile-img {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--pink-neon); box-shadow: 0 0 15px rgba(255, 42, 133, 0.4);
+        }
+        .info-list { list-style: none; margin-top: 1rem; }
+        .info-list li { margin-bottom: 0.6rem; color: var(--text-gray); }
+        .info-list strong { color: var(--text-light); }
+
+        /* 2. ส่วนผลงาน */
+        .work-link {
+            color: var(--blue-neon); text-decoration: none; font-size: 0.9rem;
+            display: inline-block; margin-left: 10px; border-bottom: 1px dashed var(--blue-neon);
+        }
+        .work-link:hover { color: var(--pink-neon); border-bottom-color: var(--pink-neon); }
+
+        /* 3. ส่วน Social Media */
+        .social-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
         .btn-social {
-            background: transparent; color: var(--text-light); border: 2px solid var(--purple-cyber);
+            background: transparent; color: var(--text-light); border: 2px solid var(--pink-neon);
             padding: 0.6rem 1.2rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
         }
+        .btn-social.ig { border-color: var(--purple-cyber); }
+        .btn-social.tiktok { border-color: var(--blue-neon); }
+        .btn-social:hover { background: white; color: var(--bg-dark); transform: translateY(-2px); }
 
-        .btn-social:hover {
-            background: var(--purple-cyber); box-shadow: 0 0 15px rgba(138, 43, 226, 0.6); transform: scale(1.05);
+        /* 4. ส่วน แกลเลอรีความทรงจำ */
+        .memo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
+        .memo-card {
+            background-color: var(--bg-dark); border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
+        }
+        .memo-card:hover { transform: translateY(-5px); border-color: var(--purple-cyber); }
+        .card-img { width: 100%; height: 160px; object-fit: cover; background-color: #221d3a; }
+        .card-content { padding: 1rem; }
+        .card-tag { color: var(--pink-neon); font-size: 0.75rem; font-weight: 600; display: inline-block; margin-bottom: 0.5rem; }
+        .card-title { font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .card-text { color: var(--text-gray); font-size: 0.85rem; line-height: 1.4; }
 
         @media (max-width: 768px) {
-            .profile-section { flex-direction: column; text-align: center; padding: 1.5rem; }
-            .header-logo { font-size: 2.5rem; }
-            .social-links { justify-content: center; }
+            .profile-container { flex-direction: column; text-align: center; }
+            .social-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
+    <!-- หน้าปกหลักสุดปัง -->
     <header>
         <h1 class="header-logo">AUNGPAO MEMO</h1>
         <div class="subtitle">คลังความทรงจำสุดพิเศษของ อังเปา โอชิริส ✨</div>
@@ -158,78 +195,123 @@
 
     <div class="container">
         
-        <!-- ส่วนโปรไฟล์ -->
-        <section class="profile-section">
-            <div class="profile-img-container">
-                <!-- 📸 เปลี่ยนรูปโปรไฟล์ตรง src ด้านล่างนี้ได้เลยครับ -->
-                <img src="https://via.placeholder.com/220" alt="Aungpao Oshiris" class="profile-img">
+        <!-- Dropdown 1: ประวัติส่วนตัวและความชอบ -->
+        <div class="dropdown-wrapper">
+            <button class="dropdown-btn">
+                <span>📝 ประวัติส่วนตัว & ความชอบ</span>
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <div class="profile-container">
+                    <!-- 📸 ใส่รูปตรงนี้ -->
+                    <img src="https://via.placeholder.com/150" alt="Aungpao" class="profile-img">
+                    <div>
+                        <h2>อังเปา โอชิริส 🐶</h2>
+                        <ul class="info-list">
+                            <li><strong>วันเกิด:</strong> วว/ดด/ปปปป</li>
+                            <li><strong>ฉายา:</strong> เจ้าลูกหมานุ่มฟู</li>
+                            <li><strong>อาหารโปรด:</strong> เมนูโปรดของน้อง</li>
+                            <li><strong>สีที่ชอบ:</strong> สีที่ชอบ</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="profile-info">
-                <h2>อังเปา โอชิริส 🐶</h2>
-                <p>ยินดีต้อนรับสู่พื้นที่เก็บโมเมนต์ ความน่ารัก และผลงานของอังเปา โอชิริส หน้าเว็บนี้สร้างขึ้นมาด้วยความรักเพื่อรวบรวมทุกความทรงจำดีๆ เอาไว้ด้วยกัน ไม่ว่าจะสเตจไหน งานไหน ก็ไม่มีพลาด!</p>
-                
-                <div class="social-links">
-                    <!-- 🔗 ใส่ลิงก์โซเชียลของอังเปาตรงคำว่า # ได้เลยครับ -->
-                    <a href="#" target="_blank" class="btn-social">X (Twitter)</a>
-                    <a href="#" target="_blank" class="btn-social">Instagram</a>
+        </div>
+
+        <!-- Dropdown 2: ผลงานโดดเด่น -->
+        <div class="dropdown-wrapper">
+            <button class="dropdown-btn">
+                <span>🎬 ผลงานเด่นของอังเปา</span>
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <ul class="info-list">
+                    <!-- 🔗 ใส่ลิงก์ผลงานจริงแทนคำว่า # -->
+                    <li><strong>Official MV 1:</strong> เพลงเดบิวต์ <a href="#" target="_blank" class="work-link">[คลิกดูผลงาน]</a></li>
+                    <li><strong>Debut Stage:</strong> สเตจแรกสุดประทับใจ <a href="#" target="_blank" class="work-link">[คลิกดูวิดีโอ]</a></li>
+                    <li><strong>Special Show:</strong> รายการพิเศษ <a href="#" target="_blank" class="work-link">[คลิกดูย้อนหลัง]</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dropdown 3: Social Media ของน้อง -->
+        <div class="dropdown-wrapper">
+            <button class="dropdown-btn">
+                <span>📱 Official Social Media</span>
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <div class="social-buttons">
+                    <!-- 🔗 ใส่ลิงก์โซเชียลจริงของน้องแทนเครื่องหมาย # -->
+                    <a href="#" target="_blank" class="btn-social x">X (Twitter)</a>
+                    <a href="#" target="_blank" class="btn-social ig">Instagram</a>
+                    <a href="#" target="_blank" class="btn-social tiktok">TikTok</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- ส่วนของบันทึกความทรงจำ / แกลเลอรี -->
-        <section>
-            <h2 class="section-title">My Special Memos</h2>
-            
-            <div class="memo-grid">
-                
-                <!-- การ์ดที่ 1 -->
-                <div class="memo-card">
-                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
-                    <img src="https://via.placeholder.com/400x200" alt="Memo 1" class="card-img">
-                    <div class="card-content">
-                        <span class="card-tag">First Impression</span>
-                        <h3 class="card-title">วันแรกที่ได้รู้จัก</h3>
-                        <p class="card-text">บันทึกความประทับใจแรก หรือโมเมนต์สุดน่ารักของอังเปาที่ทำให้เราโดนตกเข้าด้อม</p>
+        <!-- Dropdown 4: คลังความทรงจำ (My Special Memos) -->
+        <div class="dropdown-wrapper">
+            <button class="dropdown-btn">
+                <span>📸 My Special Memos (คลังรูปและความทรงจำ)</span>
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <div class="memo-grid">
+                    
+                    <!-- การ์ดภาพ 1 -->
+                    <div class="memo-card">
+                        <img src="https://via.placeholder.com/400x200" alt="Memo 1" class="card-img">
+                        <div class="card-content">
+                            <span class="card-tag">First Impression</span>
+                            <h3 class="card-title">วันแรกที่ได้รู้จัก</h3>
+                            <p class="card-text">บันทึกโมเมนต์สุดน่ารักของอังเปาที่ทำให้เราโดนตกเข้าด้อม</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- การ์ดที่ 2 -->
-                <div class="memo-card">
-                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
-                    <img src="https://via.placeholder.com/400x200" alt="Memo 2" class="card-img">
-                    <div class="card-content">
-                        <span class="card-track">Stage / Event</span>
-                        <h3 class="card-title">โมเมนต์สุดอลังการ</h3>
-                        <p class="card-text">รวบรวมผลงานการแสดงสุดเท่ หรือลุคที่ชอบที่สุดจากงานอีเวนต์ต่างๆ</p>
+                    <!-- การ์ดภาพ 2 -->
+                    <div class="memo-card">
+                        <img src="https://via.placeholder.com/400x200" alt="Memo 2" class="card-img">
+                        <div class="card-content">
+                            <span class="card-tag">Stage / Event</span>
+                            <h3 class="card-title">โมเมนต์สุดอลังการ</h3>
+                            <p class="card-text">รวบรวมผลงานการแสดงสุดเท่จากงานอีเวนต์ต่างๆ</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- การ์ดที่ 3 -->
-                <div class="memo-card">
-                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
-                    <img src="https://via.placeholder.com/400x200" alt="Memo 3" class="card-img">
-                    <div class="card-content">
-                        <span class="card-tag">Daily Cute</span>
-                        <h3 class="card-title">ความสดใสรายวัน</h3>
-                        <p class="card-text">รวมรูปภาพหรือข้อความน่ารักๆ จากโซเชียลมีเดียของอังเปาที่ดูทีไรก็ยิ้มได้</p>
-                    </div>
                 </div>
-
-                <!-- ยอดเยี่ยม! ผมเพิ่มการ์ดใบที่ 4 รอไว้ให้แล้วครับ คุณแต่งข้อมูลต่อได้เลย -->
-                <div class="memo-card">
-                    <!-- 📸 เปลี่ยนลิงก์รูปตรง src ด้านล่างนี้ -->
-                    <img src="https://via.placeholder.com/400x200" alt="Memo 4" class="card-img">
-                    <div class="card-content">
-                        <span class="card-tag">Favorite Song</span>
-                        <h3 class="card-title">เพลงโปรด/ท่อนร้องในตำนาน</h3>
-                        <p class="card-text">เอาไว้บันทึกเนื้อเพลง ซีนใน MV หรือท่อนไฮไลต์ที่คุณชอบฟังบ่อยๆ</p>
-                    </div>
-                </div>
-
             </div>
-        </section>
+        </div>
 
     </div>
+
+    <!-- 🛠️ JavaScript สำหรับสั่งให้ดรอปดาวน์ยืด-หดได้ตอนคลิก -->
+    <script>
+        const dropdowns = document.querySelectorAll('.dropdown-wrapper');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.dropdown-btn');
+            const content = dropdown.querySelector('.dropdown-content');
+
+            btn.addEventListener('click', () => {
+                // เช็คว่าตัวที่กดเปิดอยู่แล้วรึเปล่า
+                const isActive = dropdown.classList.contains('active');
+                
+                // สั่งปิดตัวอื่นทั้งหมดก่อน (เปิดได้ทีละอันเพื่อความสวยงาม)
+                dropdowns.forEach(other => {
+                    other.classList.remove('active');
+                    other.querySelector('.dropdown-content').style.maxHeight = null;
+                });
+
+                // ถ้าตัวที่กดไม่ได้เปิดอยู่ ให้สั่งกางออก
+                if (!isActive) {
+                    dropdown.classList.add('active');
+                    // คำนวณความสูงของเนื้อหาจริงเพื่อยืดออกให้พอดีแบบ Smooth
+                    content.style.maxHeight = content.scrollHeight + 100 + "px";
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
