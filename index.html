@@ -18,6 +18,7 @@
             --pink-neon: #ff2a85;
             --purple-cyber: #8a2be2;
             --blue-neon: #00f0ff;
+            --green-clover: #00fa9a;
             --text-light: #ffffff;
             --text-gray: #b3b3cc;
         }
@@ -69,9 +70,8 @@
 
         .container { max-width: 950px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
 
-        /* --- 🌀 MODERN ACCORDION SYSTEM (CSS GRID TRANSITION METHOD) --- */
-        
-        /* --- 1. Dropdown ระดับนอกสุด (Main Sections) --- */
+        /* --- 🌀 MODERN ACCORDION SYSTEM --- */
+        /* 1. Dropdown ระดับนอกสุด */
         .dropdown-wrapper {
             margin-bottom: 1.5rem;
             background-color: var(--bg-card);
@@ -98,484 +98,172 @@
             transition: background 0.3s ease;
         }
 
-        .dropdown-btn:hover {
-            background: rgba(255, 42, 133, 0.05);
-            color: var(--pink-neon);
-        }
+        .dropdown-btn:hover { background: rgba(255, 42, 133, 0.05); color: var(--pink-neon); }
+        .dropdown-icon { font-size: 1rem; transition: transform 0.3s ease; color: var(--pink-neon); }
+        .dropdown-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .dropdown-inner { overflow: hidden; background: rgba(15, 12, 27, 0.5); transition: padding 0.3s ease; padding: 0 1.5rem; }
+        
+        .dropdown-wrapper.active { border-color: var(--pink-neon); box-shadow: 0 0 20px rgba(255, 42, 133, 0.15); }
+        .dropdown-wrapper.active > .dropdown-content { grid-template-rows: 1fr; }
+        .dropdown-wrapper.active > .dropdown-content > .dropdown-inner { padding: 1.5rem; }
+        .dropdown-wrapper.active .dropdown-icon { transform: rotate(180deg); }
 
-        .dropdown-icon {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-            color: var(--pink-neon);
-        }
-
-        /* กล่องเนื้อหาหลัก (ใช้เทคนิค Grid Auto-Height) */
-        .dropdown-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .dropdown-inner {
-            overflow: hidden;
-            background: rgba(15, 12, 27, 0.5);
-            transition: padding 0.3s ease;
-            padding: 0 1.5rem;
-        }
-
-        /* คอนดิชั่นเมื่อกด Active */
-        .dropdown-wrapper.active {
-            border-color: var(--pink-neon);
-            box-shadow: 0 0 20px rgba(255, 42, 133, 0.15);
-        }
-
-        .dropdown-wrapper.active > .dropdown-content {
-            grid-template-rows: 1fr;
-        }
-
-        .dropdown-wrapper.active > .dropdown-content > .dropdown-inner {
-            padding: 1.5rem;
-        }
-
-        .dropdown-wrapper.active .dropdown-icon {
-            transform: rotate(180deg);
-        }
-
-        /* --- 2. Dropdown ระดับที่ 2 (Sub-Dropdowns ใต้ผลงานเด่น) --- */
-        .sub-dropdown-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            width: 100%;
-        }
-
+        /* 2. Dropdown ระดับที่ 2 (Sub-Dropdowns) */
+        .sub-dropdown-list { display: flex; flex-direction: column; gap: 1.25rem; width: 100%; }
         .sub-dropdown-wrapper {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px; overflow: hidden; transition: all 0.3s ease;
             border-left: 4px solid var(--pink-neon);
         }
-
         .sub-dropdown-wrapper.blue-border { border-left-color: var(--blue-neon); }
+        .sub-dropdown-wrapper.green-border { border-left-color: var(--green-clover); }
         .sub-dropdown-wrapper.purple-border { border-left-color: var(--purple-cyber); }
 
         .sub-dropdown-btn {
-            width: 100%;
-            background: transparent;
-            border: none;
-            padding: 1.2rem 1.5rem;
-            color: var(--text-light);
-            font-size: 1.15rem;
-            font-family: 'Mitr', sans-serif;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
+            width: 100%; background: transparent; border: none; padding: 1.2rem 1.5rem;
+            color: var(--text-light); font-size: 1.15rem; font-family: 'Mitr', sans-serif;
+            font-weight: 600; text-align: left; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center; transition: all 0.3s ease;
         }
-
-        .sub-dropdown-btn:hover {
-            color: var(--pink-neon);
-            background: rgba(255, 42, 133, 0.02);
-        }
-
-        .sub-dropdown-icon {
-            font-size: 0.85rem;
-            color: var(--pink-neon);
-            transition: transform 0.3s ease;
-        }
-
-        .sub-dropdown-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .sub-dropdown-inner {
-            overflow: hidden;
-            background: rgba(15, 12, 27, 0.4);
-            transition: padding 0.3s ease;
-            padding: 0 1.5rem;
-        }
-
-        /* สถานะเมื่อกดเปิด Dropdown ย่อย */
-        .sub-dropdown-wrapper.active {
-            border-color: var(--pink-neon);
-            background: rgba(255, 42, 133, 0.02);
-        }
+        .sub-dropdown-btn:hover { color: var(--pink-neon); background: rgba(255, 42, 133, 0.02); }
+        .sub-dropdown-icon { font-size: 0.85rem; color: var(--pink-neon); transition: transform 0.3s ease; }
+        
+        .sub-dropdown-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .sub-dropdown-inner { overflow: hidden; background: rgba(15, 12, 27, 0.4); transition: padding 0.3s ease; padding: 0 1.5rem; }
+        
+        .sub-dropdown-wrapper.active { border-color: var(--pink-neon); background: rgba(255, 42, 133, 0.02); }
         .sub-dropdown-wrapper.blue-border.active { border-color: var(--blue-neon); }
+        .sub-dropdown-wrapper.green-border.active { border-color: var(--green-clover); }
         .sub-dropdown-wrapper.purple-border.active { border-color: var(--purple-cyber); }
+        .sub-dropdown-wrapper.active > .sub-dropdown-content { grid-template-rows: 1fr; }
+        .sub-dropdown-wrapper.active > .sub-dropdown-content > .sub-dropdown-inner { padding: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .sub-dropdown-wrapper.active .sub-dropdown-icon { transform: rotate(180deg); }
 
-        .sub-dropdown-wrapper.active > .sub-dropdown-content {
-            grid-template-rows: 1fr;
-        }
+        /* --- STREAMING_CHUNK: Styling inner components (Series, Events, Contact, Slider) --- */
+        /* 3. Series Items */
+        .series-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .series-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; }
+        .series-item:hover { border-color: rgba(255, 42, 133, 0.3); background: rgba(255, 42, 133, 0.01); }
+        .series-title-btn { width: 100%; background: transparent; border: none; padding: 12px 15px; color: var(--text-light); font-size: 0.95rem; font-family: 'Kanit', sans-serif; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .series-title-btn:hover { color: var(--pink-neon); }
+        .series-arrow { font-size: 0.8rem; color: var(--pink-neon); transition: transform 0.3s ease; }
+        .series-detail { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+        .series-detail-inner { overflow: hidden; background: rgba(15, 12, 27, 0.4); font-size: 0.85rem; color: var(--text-gray); line-height: 1.6; transition: padding 0.3s ease; padding: 0 15px; }
+        .series-item.active { border-color: var(--pink-neon); }
+        .series-item.active > .series-detail { grid-template-rows: 1fr; }
+        .series-item.active > .series-detail > .series-detail-inner { padding: 15px; border-top: 1px solid rgba(255, 42, 133, 0.15); }
+        .series-item.active .series-arrow { transform: rotate(180deg); }
 
-        .sub-dropdown-wrapper.active > .sub-dropdown-content > .sub-dropdown-inner {
-            padding: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sub-dropdown-wrapper.active .sub-dropdown-icon {
-            transform: rotate(180deg);
-        }
-
-        /* --- 3. Dropdown ระดับที่ 3 (Nested Series Items) --- */
-        .series-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .series-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .series-item:hover {
-            border-color: rgba(255, 42, 133, 0.3);
-            background: rgba(255, 42, 133, 0.01);
-        }
-
-        .series-title-btn {
-            width: 100%;
-            background: transparent;
-            border: none;
-            padding: 12px 15px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-family: 'Kanit', sans-serif;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .series-title-btn:hover {
-            color: var(--pink-neon);
-        }
-
-        .series-arrow {
-            font-size: 0.8rem;
-            color: var(--pink-neon);
-            transition: transform 0.3s ease;
-        }
-
-        .series-detail {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .series-detail-inner {
-            overflow: hidden;
-            background: rgba(15, 12, 27, 0.4);
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-            transition: padding 0.3s ease;
-            padding: 0 15px;
-        }
-
-        .series-item.active {
-            border-color: var(--pink-neon);
-        }
-
-        .series-item.active > .series-detail {
-            grid-template-rows: 1fr;
-        }
-
-        .series-item.active > .series-detail > .series-detail-inner {
-            padding: 15px;
-            border-top: 1px solid rgba(255, 42, 133, 0.15);
-        }
-
-        .series-item.active .series-arrow {
-            transform: rotate(180deg);
-        }
-
-        /* --- ตกแต่งส่วนประวัติส่วนตัว --- */
-        .profile-container {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        .profile-img {
-            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
-            border: 3px solid var(--pink-neon); box-shadow: 0 0 15px rgba(255, 42, 133, 0.4);
-        }
+        /* --- Profile & Links --- */
+        .profile-container { display: flex; align-items: center; gap: 2rem; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--pink-neon); box-shadow: 0 0 15px rgba(255, 42, 133, 0.4); }
         .info-list { list-style: none; margin-top: 1rem; }
         .info-list li { margin-bottom: 0.6rem; color: var(--text-gray); }
         .info-list strong { color: var(--text-light); }
-
-        /* --- ตกแต่งส่วนแบรนดิ้งของคอนเทนต์ด้านใน --- */
-        .sub-dropdown-desc {
-            color: var(--text-gray);
-            font-size: 0.92rem;
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
+        .sub-dropdown-desc { color: var(--text-gray); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.2rem; }
+        
+        .work-btn-link, .series-watch-link {
+            display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 600;
+            border-bottom: 1px dashed; transition: all 0.3s ease; margin-top: 5px;
         }
+        .work-btn-link { color: var(--blue-neon); border-bottom-color: var(--blue-neon); font-size: 0.88rem; }
+        .work-btn-link:hover { color: var(--pink-neon); border-bottom-color: var(--pink-neon); }
+        .series-watch-link { color: var(--pink-neon) !important; border-bottom-color: var(--pink-neon); font-size: 0.82rem; margin-top: 8px; }
+        .series-watch-link:hover { color: var(--blue-neon) !important; border-bottom-color: var(--blue-neon); }
 
-        .work-btn-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--blue-neon);
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
-            border-bottom: 1px dashed var(--blue-neon);
-            transition: all 0.3s ease;
-            margin-top: 5px;
+        /* --- Timelines (Alpha & Events) --- */
+        .alpha-timeline, .event-timeline {
+            position: relative; margin-top: 15px; display: flex; flex-direction: column; gap: 1.25rem; text-align: left;
         }
-
-        .work-btn-link:hover {
-            color: var(--pink-neon);
-            border-bottom-color: var(--pink-neon);
-        }
-
-        .series-watch-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--pink-neon) !important;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px dashed var(--pink-neon);
-            font-size: 0.82rem;
-            margin-top: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .series-watch-link:hover {
-            color: var(--blue-neon) !important;
-            border-bottom-color: var(--blue-neon);
-        }
-
-        /* --- 🐺 สไตล์ส่วน Timeline ของ Project Alpha --- */
-        .alpha-timeline {
-            position: relative;
-            padding-left: 18px;
-            border-left: 2px dashed rgba(255, 42, 133, 0.25);
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            text-align: left;
-        }
-
-        .timeline-item {
-            position: relative;
-        }
-
+        .alpha-timeline { padding-left: 18px; border-left: 2px dashed rgba(255, 42, 133, 0.25); }
+        .timeline-item { position: relative; }
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -25px;
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--pink-neon);
-            box-shadow: 0 0 8px var(--pink-neon);
+            content: ''; position: absolute; left: -25px; top: 6px; width: 12px; height: 12px;
+            border-radius: 50%; background-color: var(--pink-neon); box-shadow: 0 0 8px var(--pink-neon);
         }
+        .timeline-item.best::before { background-color: var(--blue-neon); box-shadow: 0 0 8px var(--blue-neon); }
+        .timeline-week { font-size: 0.75rem; font-weight: 600; color: var(--blue-neon); letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
+        .timeline-week .badge { background: rgba(255, 42, 133, 0.15); color: var(--pink-neon); padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; }
+        .timeline-song { font-size: 0.95rem; font-weight: 600; color: var(--text-light); margin: 2px 0; }
+        .timeline-members { font-size: 0.8rem; color: var(--text-gray); line-height: 1.4; }
+        .timeline-members strong { color: var(--text-light); }
+        .timeline-link { font-size: 0.78rem; color: var(--pink-neon); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-weight: 600; border-bottom: 1px dashed var(--pink-neon); transition: all 0.2s ease; }
+        .timeline-link:hover { color: var(--blue-neon); border-bottom-color: var(--blue-neon); }
 
-        .timeline-item.best::before {
-            background-color: var(--blue-neon);
-            box-shadow: 0 0 8px var(--blue-neon);
-        }
-
-        .timeline-week {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--blue-neon);
-            letter-spacing: 1px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .timeline-week .badge {
-            background: rgba(255, 42, 133, 0.15);
-            color: var(--pink-neon);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-        }
-
-        .timeline-song {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-light);
-            margin: 2px 0;
-        }
-
-        .timeline-members {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            line-height: 1.4;
-        }
-
-        .timeline-members strong {
-            color: var(--text-light);
-        }
-
-        .timeline-link {
-            font-size: 0.78rem;
-            color: var(--pink-neon);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 6px;
-            font-weight: 600;
-            border-bottom: 1px dashed var(--pink-neon);
-            transition: all 0.2s ease;
-        }
-
-        .timeline-link:hover {
-            color: var(--blue-neon);
-            border-bottom-color: var(--blue-neon);
-        }
-
-        /* --- 🎙️ สไตล์ส่วน CLO'VER --- */
-        .clover-profile-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-            text-align: left;
-            margin-top: 10px;
-        }
-
-        .clover-info-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.25rem;
-            border-left: 4px solid var(--blue-neon);
-        }
-
-        .clover-badge {
-            display: inline-block;
-            background: rgba(0, 240, 255, 0.1);
-            color: var(--blue-neon);
-            font-size: 0.75rem;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .clover-songs-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .clover-song-item {
-            background: rgba(0, 240, 255, 0.02);
-            border: 1px dashed rgba(0, 240, 255, 0.15);
-            border-radius: 8px;
-            padding: 10px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .clover-song-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .clover-song-date {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-        }
-
-        /* --- 📅 สไตล์ส่วน Event / Show --- */
-        .event-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            text-align: left;
-            margin-top: 10px;
-        }
-
+        /* Event styles */
         .event-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            border-left: 4px solid var(--pink-neon);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px; padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem;
+            border-left: 4px solid var(--pink-neon); transition: all 0.3s ease;
         }
+        .event-item.purple-line { border-left-color: var(--purple-cyber); }
+        .event-item:hover { border-color: var(--pink-neon); background: rgba(255, 42, 133, 0.02); transform: translateX(4px); }
+        .event-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--pink-neon); font-weight: 600; }
+        .event-header.purple-header { color: var(--purple-cyber); }
+        .event-title { font-size: 0.95rem; font-weight: 600; color: var(--text-light); }
+        .event-desc { font-size: 0.8rem; color: var(--text-gray); line-height: 1.4; }
 
-        .event-item:hover {
-            border-color: var(--pink-neon);
-            background: rgba(255, 42, 133, 0.02);
-            transform: translateX(4px);
+        /* --- CLO'VER --- */
+        .clover-profile-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; text-align: left; margin-top: 10px; }
+        .clover-info-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 1.25rem; border-left: 4px solid var(--green-clover); }
+        .clover-badge { display: inline-block; background: rgba(0, 250, 154, 0.1); color: var(--green-clover); font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; margin-bottom: 0.5rem; }
+        .clover-songs-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+        .clover-song-item { background: rgba(0, 250, 154, 0.02); border: 1px dashed rgba(0, 250, 154, 0.15); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+        .clover-song-title { font-size: 0.9rem; font-weight: 600; color: var(--text-light); }
+        .clover-song-date { font-size: 0.75rem; color: var(--text-gray); }
+
+        /* --- IMAGE SLIDER FOR FAN PROJECTS --- */
+        .slider-container {
+            position: relative; width: 100%; border-radius: 8px; overflow: hidden;
+            border: 1px solid rgba(255, 42, 133, 0.3); background: #000; margin-bottom: 1rem;
         }
-
-        .event-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: var(--pink-neon);
-            font-weight: 600;
+        .slider-track {
+            display: flex; transition: transform 0.4s ease-in-out;
         }
-
-        .event-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-light);
+        .slider-slide {
+            min-width: 100%; display: flex; justify-content: center; align-items: center;
         }
-
-        .event-desc {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            line-height: 1.4;
+        .slider-slide img {
+            width: 100%; height: auto; max-height: 300px; object-fit: contain;
         }
+        .slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(15, 12, 27, 0.7); color: var(--pink-neon); border: 1px solid var(--pink-neon);
+            width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10;
+            display: flex; justify-content: center; align-items: center; transition: all 0.2s;
+        }
+        .slider-btn:hover { background: var(--pink-neon); color: #fff; }
+        .slider-btn.prev { left: 10px; }
+        .slider-btn.next { right: 10px; }
 
-        /* --- Social Media Section --- */
-        .social-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+        /* --- CONTACT & SOCIAL GRID --- */
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 10px;
+        }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 1.5rem; text-align: center;
+            border-top: 3px solid var(--pink-neon);
+        }
+        .contact-card.work { border-top-color: var(--blue-neon); }
+        .contact-card h3 { color: var(--text-light); font-size: 1.1rem; margin-bottom: 1rem; }
+        
+        .social-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .btn-social {
-            background: transparent; color: var(--text-light); border: 2px solid var(--pink-neon);
-            padding: 0.6rem 1.2rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            background: transparent; color: var(--text-light); border: 1px solid var(--pink-neon);
+            padding: 0.5rem 1rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
         }
         .btn-social.ig { border-color: var(--purple-cyber); }
         .btn-social.tiktok { border-color: var(--blue-neon); }
         .btn-social:hover { background: white; color: var(--bg-dark); transform: translateY(-2px); }
 
+        .work-contact-info p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 8px; }
+        .work-contact-info i { color: var(--blue-neon); width: 20px; }
+
         /* --- แกลเลอรีความทรงจำ --- */
-        .memo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        .memo-card {
-            background-color: var(--bg-dark); border-radius: 12px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
-        }
+        .memo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .memo-card { background-color: var(--bg-dark); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; }
         .memo-card:hover { transform: translateY(-5px); border-color: var(--purple-cyber); }
         .card-img { width: 100%; height: 160px; object-fit: cover; background-color: #221d3a; }
         .card-content { padding: 1rem; }
@@ -585,7 +273,7 @@
 
         @media (max-width: 768px) {
             .profile-container { flex-direction: column; text-align: center; }
-            .social-buttons { flex-direction: column; }
+            .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -635,7 +323,7 @@
         <!-- Dropdown 2: ผลงานแยกตามหมวดหมู่ (Works) -->
         <div class="dropdown-wrapper">
             <button class="dropdown-btn">
-                <span>🎬 ผลงาน</span>
+                <span>🎬 ผลงาน (Works)</span>
                 <span class="dropdown-icon">▼</span>
             </button>
             <div class="dropdown-content">
@@ -650,105 +338,47 @@
                             </button>
                             <div class="sub-dropdown-content">
                                 <div class="sub-dropdown-inner">
-                                    <p class="sub-dropdown-desc">รายการเซอไววัลเฟ้นหาบอยกรุ๊ปของ GMMTV ที่รวบรวมเด็กหนุ่มมากความสามารถ 27 คนมาต่อสู้เพื่อแย่งชิงตำแหน่ง Alpha โดยอังเปา (A02) ได้โชว์พัฒนาการด้านการเต้นและพลังแร็ปสุดคลีน ฝ่าด่านสุดโหดจน<b>เข้าสู่รอบชิงชนะเลิศ (Finalist - Top 12)</b> และได้เซ็นสัญญาเป็นนักแสดง/ศิลปินของ GMMTV ทันทีหลังจบรายการ!</p>
+                                    <p class="sub-dropdown-desc">รายการเซอไววัลเฟ้นหาบอยกรุ๊ปของ GMMTV อังเปา (A02) ได้โชว์พัฒนาการด้านการเต้นและพลังแร็ปสุดคลีน ฝ่าด่านสุดโหดจน<b>เข้าสู่รอบชิงชนะเลิศ (อันดับ: Finalist Top 12)</b> และได้เซ็นสัญญาเป็นศิลปิน/นักแสดงของค่ายทันที!</p>
                                     
                                     <div class="alpha-timeline">
-                                        <!-- EP.1-2 -->
                                         <div class="timeline-item">
-                                            <div class="timeline-week">
-                                                <span>Week 1 | E1-E2 Searching for ALPHA</span>
-                                                <span class="badge">BETA Classified</span>
-                                            </div>
-                                            <h5 class="timeline-song">🎤 เพลง "มองกี่ทีก็น่ารัก (Cute Cute)" (Nont Tanont)</h5>
-                                            <p class="timeline-members">โชว์ร้องเดี่ยวแนะนำตัวครั้งแรกต่อหน้ากรรมการเพื่อจัดเกรดในกลุ่มที่ 3 (ผลโหวตจัดให้อยู่กลุ่ม BETA)</p>
-                                            <a href="https://www.youtube.com/watch?v=GjKNJ1m8Rfc" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชม Full Performance
-                                            </a>
+                                            <div class="timeline-week"><span>รอบ Audition / แนะนำตัว</span><span class="badge">จัดเกรด BETA</span></div>
+                                            <h5 class="timeline-song">🎤 เพลง "มองกี่ทีก็น่ารัก"</h5>
+                                            <p class="timeline-members">โชว์ร้องเดี่ยว แนะนำตัวครั้งแรกต่อหน้ากรรมการ โชว์ความน่ารักสดใสตกคนดูเข้าด้อม</p>
+                                            <a href="https://youtu.be/GjKNJ1m8Rfc" target="_blank" class="timeline-link"><i class="fa-brands fa-youtube"></i> ชมคลิปโชว์</a>
                                         </div>
-
-                                        <!-- EP.3 -->
                                         <div class="timeline-item best">
-                                            <div class="timeline-week" style="color: var(--blue-neon);">
-                                                <span>Week 3 | E3 Survival BETA (Viral Theme)</span>
-                                                <span class="badge" style="background: rgba(0, 240, 255, 0.15); color: var(--blue-neon);">★ Best Group</span>
-                                            </div>
-                                            <h5 class="timeline-song">⚡ เพลง "MONEY HONEY" (F.HERO x URBOYTJ Ft. MINNIE)</h5>
-                                            <p class="timeline-members"><b>ทีม BETA V1:</b> อังเปา (A02), อาชิ (A01), แชมป์ (A05), ฮง (A09), ไทม์ (A25), ตุ้ย (A26) (ชนะเป็นกลุ่มที่ดีที่สุดและเข้ารอบทั้งหมดโดยไม่ต้องคัดออก)</p>
-                                            <a href="https://www.youtube.com/watch?v=rpfLLOAyMtk" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชม Fancam อังเปา
-                                            </a>
+                                            <div class="timeline-week"><span>โจทย์ Viral Theme</span><span class="badge" style="background: rgba(0, 240, 255, 0.15); color: var(--blue-neon);">★ Best Group</span></div>
+                                            <h5 class="timeline-song">⚡ เพลง "MONEY HONEY"</h5>
+                                            <p class="timeline-members"><b>ทีม BETA V1:</b> แข่งร่วมกับ อชิ, แชมป์, ฮง, ไทม์, ตุ้ย (ชนะเป็นกลุ่มที่ดีที่สุด)</p>
+                                            <a href="https://youtu.be/89BQ-nukmBc" target="_blank" class="timeline-link"><i class="fa-brands fa-youtube"></i> ชมคลิปโชว์</a>
                                         </div>
-
-                                        <!-- EP.4 -->
                                         <div class="timeline-item">
-                                            <div class="timeline-week">
-                                                <span>Week 4 | E4 Challenge ALPHA</span>
-                                                <span class="badge">Special Popular Vote</span>
-                                            </div>
-                                            <h5 class="timeline-song">💖 เพลง "แฟนเก่าคนโปรด (my fav ex)" (SLAPKISS)</h5>
-                                            <p class="timeline-members"><b>ทีมยอดโหวตสูงสุด 4 อันดับแรก:</b> อังเปา (A02), แชมป์ (A05), ภีมภีม (A22), ตุ้ย (A26) ร่วมร้องในสเตจพิเศษเพื่อแฟนๆ</p>
-                                            <a href="https://www.youtube.com/watch?v=KuthSQvD3CE" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชมสเตจพิเศษ Popular Vote
-                                            </a>
+                                            <div class="timeline-week"><span>Special Show</span><span class="badge">Popular Vote</span></div>
+                                            <h5 class="timeline-song">💖 เพลง "แฟนเก่าคนโปรด (my fav ex)"</h5>
+                                            <p class="timeline-members"><b>ผู้ชนะโหวตสูงสุด 4 อันดับแรก:</b> ร้องร่วมกับ แชมป์, ภีมภีม, ตุ้ย</p>
                                         </div>
-
-                                        <!-- EP.5 -->
-                                        <div class="timeline-item">
-                                            <div class="timeline-week">
-                                                <span>Week 5 | E5 Survival BETA (Swag Theme)</span>
-                                                <span class="badge">Qualified</span>
-                                            </div>
-                                            <h5 class="timeline-song">🔥 เพลง "แฟนใหม่หน้าคุ้น" (MAIYARAP & MILLI)</h5>
-                                            <p class="timeline-members"><b>ทีม BETA S1:</b> อังเปา (A02), เดียว (A06), มิวสิค (A17), ภัทร (A23) สาดพลังแร็ปและไลน์เต้นสุดเท่ผ่านเข้ารอบสบายๆ</p>
-                                            <a href="https://www.youtube.com/watch?v=FFhdjnJchZg" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชม Performance เต็ม
-                                            </a>
-                                        </div>
-
-                                        <!-- EP.7 -->
                                         <div class="timeline-item best">
-                                            <div class="timeline-week" style="color: var(--blue-neon);">
-                                                <span>Week 7 | E7 Survival BETA (Joh Theme)</span>
-                                                <span class="badge" style="background: rgba(0, 240, 255, 0.15); color: var(--blue-neon);">★ Best Group</span>
-                                            </div>
-                                            <h5 class="timeline-song">🕺 เพลง "ชอบป่ะเนี่ย (Can I Call You Mine)" (Mai Davika) [โจ๊ะ Ver.]</h5>
-                                            <p class="timeline-members"><b>ทีม BETA J1:</b> อังเปา (A02), เดียว (A06), ฮง (A09), คีน (A12) ระเบิดความสนุกน่ารักสไตล์โจ๊ะๆ ชนะเป็น Best Group ผ่านเข้ารอบแบบสวยงาม</p>
-                                            <a href="https://www.youtube.com/watch?v=5pqLK8Oq3qg" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชมสเตจสุดโจ๊ะ
-                                            </a>
+                                            <div class="timeline-week"><span>โจทย์เพลงโจ๊ะ (Joh Theme)</span><span class="badge" style="background: rgba(0, 240, 255, 0.15); color: var(--blue-neon);">★ Best Group</span></div>
+                                            <h5 class="timeline-song">🕺 เพลง "ชอบป่ะเนี่ย (Can I Call You Mine)"</h5>
+                                            <p class="timeline-members"><b>ทีม BETA J1:</b> แข่งร่วมกับ เดียว, ฮง, คีน (ชนะเป็น Best Group)</p>
                                         </div>
-
-                                        <!-- EP.9 -->
                                         <div class="timeline-item">
-                                            <div class="timeline-week">
-                                                <span>Week 9 | E9 Survival BETA (Mashup Theme)</span>
-                                                <span class="badge">Qualified</span>
-                                            </div>
-                                            <h5 class="timeline-song">🔮 เพลง "มูเตลู (MUTELU) x ฉันจะฉาปเธอ (CURSE)" (bamm & PiXXiE)</h5>
-                                            <p class="timeline-members"><b>ทีม BETA M1:</b> อังเปา (A02), แชมป์ (A05), มิวสิค (A17) โชว์สกิล Mashup เพลงสุดน่ารัก เข้าสู่รอบรองชนะเลิศ</p>
-                                            <a href="https://www.youtube.com/watch?v=LLtmxx3q5vw" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชม Performance เต็ม
-                                            </a>
+                                            <div class="timeline-week"><span>โจทย์ Mashup Theme</span><span class="badge">Qualified</span></div>
+                                            <h5 class="timeline-song">🔮 เพลง "มูเตลู x ฉันจะฉาปเธอ"</h5>
+                                            <p class="timeline-members"><b>ทีม BETA M1:</b> แข่งร่วมกับ แชมป์, มิวสิค</p>
                                         </div>
-
-                                        <!-- Final Episode -->
                                         <div class="timeline-item">
-                                            <div class="timeline-week">
-                                                <span>Final Round | E11-Final Episode</span>
-                                                <span class="badge">Grand Finalist</span>
-                                            </div>
-                                            <h5 class="timeline-song">🏆 เพลง "พี่ไม่หล่อลวง" (BamBam)</h5>
-                                            <p class="timeline-members"><b>ทีม BETA F2:</b> อังเปา (A02), แชมป์ (A05), ฟลุ๊ค (A08), ไทม์ (A25) โชว์ฝีมือเต้นและแร็ปรอบชิงชนะเลิศอย่างสมเกียรติ</p>
-                                            <a href="https://www.youtube.com/watch?v=ZJx9RJY6KIM" target="_blank" class="timeline-link">
-                                                <i class="fa-brands fa-youtube"></i> ชมสเตจรอบชิงชนะเลิศ
-                                            </a>
+                                            <div class="timeline-week"><span>Final Round</span><span class="badge">Grand Finalist</span></div>
+                                            <h5 class="timeline-song">🏆 เพลง "พี่ไม่หล่อลวง"</h5>
+                                            <p class="timeline-members"><b>รอบชิงชนะเลิศ:</b> แข่งร่วมกับ แชมป์, ฟลุ๊ค, ไทม์</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 2. Series & Acting: Nested dropdown of 8 items -->
+                        <!-- 2. Series & Acting -->
                         <div class="sub-dropdown-wrapper">
                             <button class="sub-dropdown-btn">
                                 <span>🎬 ผลงานการแสดง</span>
@@ -756,143 +386,39 @@
                             </button>
                             <div class="sub-dropdown-content">
                                 <div class="sub-dropdown-inner">
-                                    <p class="sub-dropdown-desc" style="margin-bottom: 12px;">รวบรวมทุกบทบาทการแสดงสุดน่ารัก ทะเล้น และมีเสน่ห์สะกดใจของอังเปา (คลิกเลือกชื่อเรื่องเพื่อกางดูคาแรคเตอร์ย่อ)</p>
-                                    
+                                    <p class="sub-dropdown-desc" style="margin-bottom: 12px;">สรุปข้อมูลผลงานซีรีส์ของอังเปา (คลิกเพื่อกางดูรายละเอียดบทบาท)</p>
                                     <div class="series-list">
-                                        <!-- เรื่องที่ 1: Cooking Crush (2023) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>🍳 Cooking Crush อาหารเป็นยังไงครับหมอ (2023)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> ไดนาไมต์ (Dynamite) [บทสมทบ]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> รุ่นน้องสายรุกสุดทะเล้นพกความมั่นใจเกินร้อย คอยส่งมุกสาดมุกจีบ "หมอไฟ" (รับบทโดย นีโอ ตรัย) จนคนดูบิดเขินละลายเป็นแถบ</p>
-                                                    <a href="https://youtube.com/playlist?list=PLszepnMHc6NfUu5-Iof5f9b4M0XfUqXp2" target="_blank" class="series-watch-link">
-                                                        <i class="fa-brands fa-youtube"></i> ชมย้อนหลังทาง YouTube (GMMTV)
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>🍳 Cooking Crush อาหารเป็นยังไงครับหมอ (2023)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> ไดนาไมต์ (Dynamite)</p><p><strong>คาแรคเตอร์:</strong> รุ่นน้องตัวจี๊ดสุดน่ารัก ทะเล้น ช่างตื๊อและรักเพื่อนพ้องมากๆ คอยสาดโมเมนต์จีบและคอยหยอด "หมอไฟ" จนเคมีคู่ฟินทะลุจอ</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 2: My Love Mix-Up! (2024) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>✏️ My Love Mix-Up! เขียนรักด้วยยางลบ (2024)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> ข้าวปั้น (Khaopan) [บทสมทบ]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> เพื่อนร่วมห้องจอมกวนขวัญใจประจำแก๊ง ม.5/6 คอยปั่นมู้ดให้กลุ่มเพื่อนเฮฮา มีความโบ๊ะบ๊ะแต่น่าพึ่งพายามเพื่อนๆ มีปัญหาวุ่นๆ เสมอ</p>
-                                                    <a href="https://www.viu.com/ott/th/th/vod/2371900/My-Love-Mix-Up" target="_blank" class="series-watch-link">
-                                                        <i class="fa-solid fa-circle-play"></i> รับชมย้อนหลังได้ทาง Viu
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>✏️ My Love Mix-Up! เขียนรักด้วยยางลบ (2024)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> ข้าวปั้น (Khaopan)</p><p><strong>คาแรคเตอร์:</strong> เพื่อนร่วมชั้นเรียนสุดขี้เล่นสายฮา เป็นผู้สร้างเสียงหัวเราะและสีสันประจำห้อง ม.5/6 คอยซัพพอร์ตช่วยเหลือกลุ่มเพื่อนเสมอ</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 3: Perfect 10 Liners (2024) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>🪐 Perfect 10 Liners สายรหัสเทวดา (2024)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> ฟรังก์ (Franc) [บทสมทบ]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> สมาชิกแก๊งเพื่อนสนิทของกันต์ (Gun) เป็นหนุ่มวิศวะจอมซน ขี้เล่น มีความน่ารักตามประสาเด็กมหาลัย คอยสร้างรอยยิ้มเคียงข้างแก๊งเพื่อน</p>
-                                                    <a href="https://www.youtube.com/playlist?list=PLszepnMHc6NffpXfH8qK8fWbL0XvC9k6u" target="_blank" class="series-watch-link">
-                                                        <i class="fa-brands fa-youtube"></i> ชมย้อนหลังทาง YouTube (GMMTV)
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>🪐 Perfect 10 Liners สายรหัสเทวดา (2024)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> ฟรังก์ (Franc)</p><p><strong>คาแรคเตอร์:</strong> สมาชิกแก๊งเพื่อนสนิทของกันต์ (Gun) เป็นหนุ่มวิศวะจอมซน ขี้เล่น มีความน่ารักตามประสาเด็กมหาลัย</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 4: Break Up Service (2025) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>💔 Break Up Service บริษัทลดรักเลิก (2025)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> โมชา (Mocha) [นักแสดงรับเชิญ]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> ตัวละครรับเชิญสีสันสุดน่ารักที่โผล่มาสาดความตลกและโบ๊ะบ๊ะในบริษัท "ลดรักเลิก" ช็อตขโมยซีนที่ทำให้แฟนคลับประทับใจเป็นพิเศษ</p>
-                                                    <a href="https://www.gmm-tv.com" target="_blank" class="series-watch-link">
-                                                        <i class="fa-solid fa-circle-play"></i> รับชมได้ทาง GMM25 / TrueID
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>💔 Break Up Service บริษัทลดรักเลิก (2025)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> โมชา (Mocha)</p><p><strong>คาแรคเตอร์:</strong> ตัวละครรับเชิญสีสันสุดน่ารักที่โผล่มาสาดความตลกและโบ๊ะบ๊ะในบริษัท "ลดรักเลิก"</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 5: The Dark Dice (2025) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>🎲 The Dark Dice เกมทอยทะลุมิติ (2025)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> แก่น (Kaen) [บทสมทบ]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> วัยรุ่นที่ต้องเข้ามาเผชิญชะตากรรมระทึกขวัญในโลกเกมลูกเต๋าปริศนาอันแสนอันตราย ต้องคอยใช้ไหวพริบและพละกำลังดิ้นรนเพื่อเอาชีวิตรอดในมิติปริศนา</p>
-                                                    <a href="https://www.youtube.com" target="_blank" class="series-watch-link">
-                                                        <i class="fa-solid fa-play"></i> ติดตามรับชมทาง GMMTV
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>🎲 The Dark Dice เกมทอยทะลุมิติ (2025)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> แก่น (Kaen)</p><p><strong>คาแรคเตอร์:</strong> วัยรุ่นที่ต้องเข้ามาเผชิญชะตากรรมระทึกขวัญในโลกเกมลูกเต๋าปริศนาอันแสนอันตราย</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 6: Dare You to Death (2025) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>🔍 Dare You to Death ไขคดีเป็น เห็นคดีตาย (2025)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> ต้าร์ (Tar) [บทสมทบ]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> หนึ่งในแก๊งวัยรุ่นที่ตกลงไปในความสัมพันธ์สุดเป็นพิษและเงื่อนงำฆาตกรรมสีดำมืดอันลึกลับ นำเสนอฝั่งดราม่าระทึกขวัญที่อังเปาโชว์พลังแสดงสุดเข้มข้น</p>
-                                                    <a href="https://www.netflix.com" target="_blank" class="series-watch-link">
-                                                        <i class="fa-solid fa-video"></i> รับชมซีรีส์ทาง Netflix
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>🔍 Dare You To Death ไขคดีเป็น เห็นคดีตาย (2025/2026)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> ต้าร์ (Tar)</p><p><strong>คาแรคเตอร์:</strong> ตัวละครลึกลับท่ามกลางแก๊งเพื่อนสนิทที่ถูกพัวพันในคดีปริศนาอันแสนอันตราย</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 7: 17th Spring (TBA) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>🌸 17th Spring ใบไม้ผลิปีที่ 17 (TBA)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> นักแสดงสมทบ [เตรียมออนแอร์]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> ซีรีส์วายแนว Coming-of-age ร้าวรานแต่แฝงด้วยความอบอุ่นหัวใจ สะท้อนแง่มุมประเด็นชีวิตและการก้าวผ่านมรสุมวัยรุ่นสุดท้าทายในช่วงอายุ 17 ปี</p>
-                                                    <a href="https://www.youtube.com" target="_blank" class="series-watch-link">
-                                                        <i class="fa-brands fa-youtube"></i> รับชม Pilot Trailer ทาง YouTube
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>🌸 17th Spring (TBA)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> (รออัปเดตข้อมูล)</p><p><strong>คาแรคเตอร์:</strong> ซีรีส์วายแนว Coming-of-age ร้าวรานแต่แฝงด้วยความอบอุ่นหัวใจ</p></div></div>
                                         </div>
-
-                                        <!-- เรื่องที่ 8: Weirdo-101 (TBA) -->
                                         <div class="series-item">
-                                            <button class="series-title-btn">
-                                                <span>🧲 Weirdo-101 แรงโน้มถ่วงระหว่างเรา (TBA)</span>
-                                                <span class="series-arrow">▼</span>
-                                            </button>
-                                            <div class="series-detail">
-                                                <div class="series-detail-inner">
-                                                    <p><strong>รับบทเป็น:</strong> นักแสดงสมทบ [เตรียมออนแอร์]</p>
-                                                    <p><strong>คาแรคเตอร์ย่อ:</strong> ผลงานโรแมนติกคอมเมดี้สุดคิ้วท์แนวกลุ่มวัยรุ่นจอมเพี้ยนที่มี "แรงโน้มถ่วง" เฉพาะตัวสุดแปลกพัดพาสองใจมาเจอกัน ปล่อยเคมีสดใสสุดป่วน</p>
-                                                    <a href="https://www.youtube.com" target="_blank" class="series-watch-link">
-                                                        <i class="fa-brands fa-youtube"></i> รับชม Pilot Trailer ทาง YouTube
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button class="series-title-btn"><span>🧲 Weirdo-101 (ระหว่างถ่ายทำ)</span><span class="series-arrow">▼</span></button>
+                                            <div class="series-detail"><div class="series-detail-inner"><p><strong>รับบท:</strong> (รออัปเดตข้อมูล)</p><p><strong>คาแรคเตอร์:</strong> โรแมนติกคอมเมดี้กลุ่มวัยรุ่นจอมเพี้ยนที่มี "แรงโน้มถ่วง" เฉพาะตัว</p></div></div>
                                         </div>
                                     </div>
                                 </div>
@@ -900,15 +426,13 @@
                         </div>
 
                         <!-- 3. Boy Group: CLO'VER -->
-                        <div class="sub-dropdown-wrapper blue-border">
-                            <button class="sub-dropdown-btn" style="color: var(--blue-neon);">
+                        <div class="sub-dropdown-wrapper green-border">
+                            <button class="sub-dropdown-btn">
                                 <span>🎙️ CLO'VER</span>
-                                <span class="sub-dropdown-icon" style="color: var(--blue-neon);">▼</span>
+                                <span class="sub-dropdown-icon">▼</span>
                             </button>
                             <div class="sub-dropdown-content">
                                 <div class="sub-dropdown-inner">
-                                    <p class="sub-dropdown-desc">ก้าวสำคัญอย่างยิ่งใหญ่ในฐานะศิลปินกลุ่ม T-Pop บอยกรุ๊ปสังกัด RISER MUSIC ร่วมกับบาร์โค้ด, คีน และอชิ เพื่อมอบเรื่องราวผ่านเสียงดนตรีและลวดลายการเต้นแสนมีเสน่ห์</p>
-                                    
                                     <div class="clover-profile-grid">
                                         <div class="clover-info-card">
                                             <span class="clover-badge">📌 Official Debut</span>
@@ -917,48 +441,61 @@
                                             <p style="font-size: 0.9rem; color: var(--text-light);"><strong>Aungpao's Concept:</strong> ใบไม้แฉกที่ 4 - <b>Faith (ความศรัทธา)</b> 🍀</p>
                                         </div>
                                     </div>
-
-                                    <h5 style="margin-top: 1.25rem; font-size: 1rem; color: var(--blue-neon); text-align: left;">🎵 Digital Singles ในนามวง CLO'VER</h5>
-                                    
+                                    <h5 style="margin-top: 1.25rem; font-size: 1rem; color: var(--green-clover); text-align: left;">🎵 Digital Singles ในนามวง CLO'VER</h5>
                                     <div class="clover-songs-list">
-                                        <!-- เพลงที่ 1 -->
                                         <div class="clover-song-item">
-                                            <div>
-                                                <p class="clover-song-title">💚 คนคุ้นคอย (Next To You) [Debut Single]</p>
-                                                <span class="clover-song-date">Released: 27 พ.ย. 2568</span>
-                                            </div>
-                                            <a href="https://youtu.be/lRG5Vk6e7-A?si=hxSd2KgF6nHpJXVB" target="_blank" class="work-btn-link" style="color: var(--blue-neon); border-bottom-color: var(--blue-neon); margin-top:0;">
-                                                <i class="fa-solid fa-circle-play"></i> ฟังเพลง
-                                            </a>
+                                            <div><p class="clover-song-title">💚 คนคุ้นคอย (Next To You)</p><span class="clover-song-date">Released: 27 พ.ย. 2568</span></div>
+                                            <a href="https://youtu.be/lRG5Vk6e7-A" target="_blank" class="work-btn-link" style="color: var(--green-clover); border-bottom-color: var(--green-clover); margin-top:0;"><i class="fa-solid fa-circle-play"></i> ฟังเพลง</a>
                                         </div>
-
-                                        <!-- เพลงที่ 2 -->
                                         <div class="clover-song-item">
-                                            <div>
-                                                <p class="clover-song-title">🖤 Bad Boy No 'DO' [2nd Single]</p>
-                                                <span class="clover-song-date">Released: 6 ก.พ. 2569</span>
-                                            </div>
-                                            <a href="https://youtu.be/_X0o7GjjNVA?si=-hWdGTRhYQ75RUKS" target="_blank" class="work-btn-link" style="color: var(--blue-neon); border-bottom-color: var(--blue-neon); margin-top:0;">
-                                                <i class="fa-solid fa-circle-play"></i> ฟังเพลง
-                                            </a>
+                                            <div><p class="clover-song-title">🖤 Bad Boy No 'DO'</p><span class="clover-song-date">Released: 6 ก.พ. 2569</span></div>
+                                            <a href="https://youtu.be/_X0o7GjjNVA" target="_blank" class="work-btn-link" style="color: var(--green-clover); border-bottom-color: var(--green-clover); margin-top:0;"><i class="fa-solid fa-circle-play"></i> ฟังเพลง</a>
                                         </div>
-
-                                        <!-- เพลงที่ 3 -->
                                         <div class="clover-song-item">
-                                            <div>
-                                                <p class="clover-song-title">💖 Lonely Girl [3rd Single]</p>
-                                                <span class="clover-song-date">Released: 29 พ.ค. 2569</span>
-                                            </div>
-                                            <a href="https://youtu.be/fXi0x4hiMfc?si=NRN5Z2kgk5MXm3zi" target="_blank" class="work-btn-link" style="color: var(--blue-neon); border-bottom-color: var(--blue-neon); margin-top:0;">
-                                                <i class="fa-solid fa-circle-play"></i> ฟังเพลง
-                                            </a>
+                                            <div><p class="clover-song-title">💖 Lonely Girl</p><span class="clover-song-date">Released: 29 พ.ค. 2569</span></div>
+                                            <a href="https://youtu.be/fXi0x4hiMfc" target="_blank" class="work-btn-link" style="color: var(--green-clover); border-bottom-color: var(--green-clover); margin-top:0;"><i class="fa-solid fa-circle-play"></i> ฟังเพลง</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 4. Event / Show -->
+                        <!-- 4. Concert & Music Festival -->
+                        <div class="sub-dropdown-wrapper purple-border">
+                            <button class="sub-dropdown-btn">
+                                <span>🎸 Concert & Music Festival</span>
+                                <span class="sub-dropdown-icon">▼</span>
+                            </button>
+                            <div class="sub-dropdown-content">
+                                <div class="sub-dropdown-inner">
+                                    <p class="sub-dropdown-desc" style="margin-bottom: 1rem;">คลังเก็บความประทับใจเวทีใหญ่ (Music Festival & Concert) ทั้งในฐานะศิลปินรับเชิญ ศิลปินเดี่ยว และในนามวง</p>
+                                    <div class="event-timeline">
+                                        <div class="event-item purple-line">
+                                            <div class="event-header purple-header"><span><i class="fa-solid fa-microphone-lines"></i> 2024</span><span>#Guest</span></div>
+                                            <h5 class="event-title">BABII 24/7 Concert</h5>
+                                            <p class="event-desc">ร่วมเป็นแขกรับเชิญพิเศษบนเวทีคอนเสิร์ตใหญ่ของรุ่นพี่ OFF-GUN โชว์สกิลที่แฟนคลับต้องกรี๊ดสลบ</p>
+                                        </div>
+                                        <div class="event-item purple-line">
+                                            <div class="event-header purple-header"><span><i class="fa-solid fa-microphone-lines"></i> 2024</span><span>#Guest</span></div>
+                                            <h5 class="event-title">LYKN Unleashed Concert</h5>
+                                            <p class="event-desc">ร่วมโชว์สกิลสายแดนซ์และแร็ป เป็นแขกรับเชิญพิเศษบนสเตจคอนเสิร์ตของวง LYKN</p>
+                                        </div>
+                                        <div class="event-item purple-line">
+                                            <div class="event-header purple-header"><span><i class="fa-solid fa-microphone-lines"></i> 14 - 15 ก.พ. 2569</span><span>#CLO_VER</span></div>
+                                            <h5 class="event-title">RISER CONCERT : THE FIRST RISE</h5>
+                                            <p class="event-desc">ขึ้นแสดงโชว์สเตจคอนเสิร์ตใหญ่ครั้งแรกของค่ายเพลง RISER MUSIC ณ อิมแพ็ค อารีน่า</p>
+                                        </div>
+                                        <div class="event-item purple-line">
+                                            <div class="event-header purple-header"><span><i class="fa-regular fa-calendar-days"></i> 30 พ.ค. 2569</span><span>#CLO_VER / Inter</span></div>
+                                            <h5 class="event-title">🇸🇬 GMMTV MUSICON IN SINGAPORE</h5>
+                                            <p class="event-desc">ก้าวเดินสู่เวทีต่างประเทศเป็นครั้งแรก! แสดงคอนเสิร์ตสุดพิเศษร่วมกับวง CLO'VER ณ ประเทศสิงคโปร์</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Event / Show -->
                         <div class="sub-dropdown-wrapper">
                             <button class="sub-dropdown-btn">
                                 <span>🎪 Event / Show</span>
@@ -966,138 +503,32 @@
                             </button>
                             <div class="sub-dropdown-content">
                                 <div class="sub-dropdown-inner">
-                                    <p class="sub-dropdown-desc">บันทึกประวัติการออกงาน ทั้งในนามเดี่ยวและในนามวง CLO'VER อย่างเป็นทางการ เพื่อแฟนคลับทุกคนได้ร่วมจดจำและย้อนเวลากลับไปมองทุกก้าวการทำงานของน้องอังเปา</p>
-                                    
+                                    <p class="sub-dropdown-desc">บันทึกประวัติการออกงาน ทั้งในนามเดี่ยวและในนามวง CLO'VER อย่างเป็นทางการ</p>
                                     <div class="event-timeline">
-                                        
-                                        <!-- งานที่ 1 -->
                                         <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> 21 ธันวาคม 2567</span>
-                                                <span style="color: var(--blue-neon);">#Solo/GMMTV</span>
-                                            </div>
+                                            <div class="event-header"><span><i class="fa-regular fa-calendar-days"></i> 21 ธ.ค. 2567</span><span style="color: var(--blue-neon);">#Solo/GMMTV</span></div>
                                             <h5 class="event-title">🏆 GMMTV STARLYMPICS 2024</h5>
-                                            <p class="event-desc">ร่วมงานมหกรรมกีฬาสุดยิ่งใหญ่ประจำปีของค่าย GMMTV ในนามเดี่ยวและศิลปินสังกัด GMMTV โดยอยู่ใน "ทีม Lightning Cheetah"</p>
+                                            <p class="event-desc">ร่วมงานมหกรรมกีฬาสุดยิ่งใหญ่ประจำปีของค่าย GMMTV ใน "ทีม Lightning Cheetah"</p>
                                         </div>
-
-                                        <!-- งานที่ 2 -->
                                         <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> 20 ธันวาคม 2568</span>
-                                                <span style="color: var(--blue-neon);">#CLO_VER</span>
-                                            </div>
+                                            <div class="event-header"><span><i class="fa-regular fa-calendar-days"></i> 20 ธ.ค. 2568</span><span style="color: var(--blue-neon);">#CLO_VER</span></div>
                                             <h5 class="event-title">⚡ GMMTV STARLYMPICS 2025</h5>
-                                            <p class="event-desc">เฉิดฉายและขึ้นแสดงโชว์พิเศษในฐานะสมาชิกวง CLO'VER บนสเตจใหญ่ พร้อมร่วมแข่งขันกีฬาใน "ทีม Lightning Cheetah" และสปิริตแฟนคลับถล่มทลาย</p>
+                                            <p class="event-desc">ขึ้นแสดงโชว์พิเศษในฐานะสมาชิกวง CLO'VER บนสเตจใหญ่ พร้อมร่วมแข่งขันกีฬา</p>
                                         </div>
-
-                                        <!-- งานที่ 3 -->
                                         <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> มกราคม 2569</span>
-                                                <span style="color: var(--blue-neon);">#CLO_VER</span>
-                                            </div>
+                                            <div class="event-header"><span><i class="fa-regular fa-calendar-days"></i> ม.ค. 2569</span><span style="color: var(--blue-neon);">#CLO_VER</span></div>
                                             <h5 class="event-title">🎙️ EFM FANDOM LIVE x CLO'VER</h5>
-                                            <p class="event-desc">สัมภาษณ์เจาะลึกและพูดคุยถึงเส้นทางเตรียมตัวเปิดตัว การเดินทางสุดหรรษากว่าจะเป็นบอยกรุ๊ป ร่วมกับเพื่อนๆ สมาชิกวง CLO'VER มอบโมเมนต์ขำขันแสนสนุก</p>
+                                            <p class="event-desc">สัมภาษณ์เจาะลึกและพูดคุยถึงเส้นทางเตรียมตัวเปิดตัว ร่วมกับเพื่อนๆ สมาชิกวง</p>
                                         </div>
-
-                                        <!-- งานที่ 4 -->
                                         <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> มกราคม 2569</span>
-                                                <span style="color: var(--blue-neon);">#CLO_VER</span>
-                                            </div>
+                                            <div class="event-header"><span><i class="fa-regular fa-calendar-days"></i> ม.ค. 2569</span><span style="color: var(--blue-neon);">#CLO_VER</span></div>
                                             <h5 class="event-title">📻 Flex Talk Radio Interview</h5>
-                                            <p class="event-desc">ทีมบอยกรุ๊ป CLO'VER ยกทัพไปจัดรายการวิทยุและให้สัมภาษณ์โปรโมตผลงานเพลงเดบิวต์ "คนคุ้นคอย (Next To You)" ทางคลื่น Flex 104.5</p>
+                                            <p class="event-desc">ทีมบอยกรุ๊ป CLO'VER ยกทัพไปจัดรายการวิทยุและให้สัมภาษณ์ทางคลื่น Flex 104.5</p>
                                         </div>
-
-                                        <!-- งานที่ 5 -->
                                         <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> 14 - 15 กุมภาพันธ์ 2569</span>
-                                                <span style="color: var(--blue-neon);">#CLO_VER / Concert</span>
-                                            </div>
-                                            <h5 class="event-title">🎸 RISER CONCERT : THE FIRST RISE</h5>
-                                            <p class="event-desc">สเตจคอนเสิร์ตใหญ่ครั้งแรกของค่ายเพลง RISER MUSIC ร่วมสร้างเพอร์ฟอร์แมนซ์สุดขีดความสามารถร่วมกับศิลปินชั้นนำยกค่าย ณ อิมแพ็ค อารีน่า เมืองทองธานี</p>
-                                        </div>
-
-                                        <!-- งานที่ 6 -->
-                                        <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> 30 พฤษภาคม 2569</span>
-                                                <span style="color: var(--blue-neon);">#CLO_VER / Inter</span>
-                                            </div>
-                                            <h5 class="event-title">🇸🇬 GMMTV MUSICON IN SINGAPORE</h5>
-                                            <p class="event-desc">ก้าวเดินสู่เวทีต่างประเทศเป็นครั้งแรก! แสดงคอนเสิร์ตสุดพิเศษร่วมกับวง CLO'VER ณ ประเทศสิงคโปร์ มอบเพอร์ฟอร์แมนซ์แสนอบอุ่นในเพลงเดบิวต์</p>
-                                        </div>
-
-                                        <!-- งานที่ 7 -->
-                                        <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-regular fa-calendar-days"></i> Daily / Weekly</span>
-                                                <span style="color: var(--blue-neon);">#Solo / Talk</span>
-                                            </div>
+                                            <div class="event-header"><span><i class="fa-regular fa-calendar-days"></i> Daily / Weekly</span><span style="color: var(--blue-neon);">#Solo / Talk</span></div>
                                             <h5 class="event-title">🏠 GMMTV LIVE HOUSE Show</h5>
-                                            <p class="event-desc">ดำเนินรายการพูดคุย ไลฟ์สดสไตล์คนกันเองร่วมกับนักแสดงชั้นนำของค่าย เช่น พี่ออฟ จุมพล, พี่ฟลุ๊ค ณัฐนนท์ และ พี่นีโอ ตรัย ทาง YouTube</p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 5. Festival -->
-                        <div class="sub-dropdown-wrapper">
-                            <button class="sub-dropdown-btn">
-                                <span>🎡 Festival</span>
-                                <span class="sub-dropdown-icon">▼</span>
-                            </button>
-                            <div class="sub-dropdown-content">
-                                <div class="sub-dropdown-inner">
-                                    <p class="sub-dropdown-desc">บันทึกความทรงจำการขึ้นแสดงตามเวทีเทศกาลดนตรีและเวทีภายนอกต่างๆ สาดออร่าความสดใสระดับบีเกิล มอบพลังบวกให้คนฟังตลอดงาน</p>
-                                    <a href="#" target="_blank" class="work-btn-link">
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i> ดูคลิปฟีดบรรยากาศงาน
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 6. Concert -->
-                        <div class="sub-dropdown-wrapper purple-border">
-                            <button class="sub-dropdown-btn" style="color: var(--purple-cyber);">
-                                <span>🎸 Concert</span>
-                                <span class="sub-dropdown-icon" style="color: var(--purple-cyber);">▼</span>
-                            </button>
-                            <div class="sub-dropdown-content">
-                                <div class="sub-dropdown-inner">
-                                    <p class="sub-dropdown-desc" style="margin-bottom: 1rem;">คลังเก็บความประทับใจคอนเสิร์ตใหญ่ ที่อังเปาและผองเพื่อนศิลปินร่วมระเบิดความมันส์บนสเตจใหญ่ทั้งในฐานะศิลปินรับเชิญและศิลปินหลัก</p>
-                                    
-                                    <div class="event-timeline">
-                                        <!-- ลิสต์คอนเสิร์ต -->
-                                        <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-solid fa-microphone-lines"></i> 2024</span>
-                                                <span style="color: var(--purple-cyber);">#Guest</span>
-                                            </div>
-                                            <h5 class="event-title">BABII 24/7 Concert</h5>
-                                            <p class="event-desc">ร่วมเป็นแขกรับเชิญพิเศษบนเวทีคอนเสิร์ตใหญ่ของ OFF-GUN</p>
-                                        </div>
-
-                                        <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-solid fa-microphone-lines"></i> 2024</span>
-                                                <span style="color: var(--purple-cyber);">#Guest</span>
-                                            </div>
-                                            <h5 class="event-title">LYKN Unleashed Concert</h5>
-                                            <p class="event-desc">ร่วมเป็นแขกรับเชิญพิเศษบนสเตจคอนเสิร์ตของวง LYKN</p>
-                                        </div>
-
-                                        <div class="event-item">
-                                            <div class="event-header">
-                                                <span><i class="fa-solid fa-microphone-lines"></i> 2026</span>
-                                                <span style="color: var(--purple-cyber);">#CLO_VER</span>
-                                            </div>
-                                            <h5 class="event-title">RISER CONCERT : THE FIRST RISE</h5>
-                                            <p class="event-desc">คอนเสิร์ตใหญ่เต็มรูปแบบในนามวง CLO'VER ร่วมกับศิลปินยกค่าย RISER MUSIC</p>
+                                            <p class="event-desc">ดำเนินรายการพูดคุย ไลฟ์สดร่วมกับนักแสดงชั้นนำของค่าย ทาง YouTube</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1109,33 +540,150 @@
             </div>
         </div>
 
-        <!-- Dropdown 3: Social Media ของน้อง -->
+        <!-- Dropdown 3: ตารางงาน (Schedule) -->
         <div class="dropdown-wrapper">
             <button class="dropdown-btn">
-                <span>📱 Official Social Media</span>
+                <span>🗓️ ตารางงาน (Schedule)</span>
                 <span class="dropdown-icon">▼</span>
             </button>
             <div class="dropdown-content">
                 <div class="dropdown-inner">
-                    <div class="social-buttons">
-                        <a href="https://x.com/20aungpao" target="_blank" class="btn-social x">
-                            <i class="fa-brands fa-x-twitter"></i> X (Twitter)
-                        </a>
-                        <a href="https://www.instagram.com/20aungpao" target="_blank" class="btn-social ig">
-                            <i class="fa-brands fa-instagram"></i> Instagram
-                        </a>
-                        <a href="https://www.tiktok.com/@20aungpao" target="_blank" class="btn-social tiktok">
-                            <i class="fa-brands fa-tiktok"></i> TikTok
-                        </a>
-                        <a href="https://www.threads.net/@20aungpao" target="_blank" class="btn-social threads">
-                            <i class="fa-solid fa-at"></i> Threads
-                        </a>
+                    <p class="sub-dropdown-desc" style="margin-top: 10px;">อัปเดตคิวงานและตารางกิจกรรมของอังเปา เพื่อให้แฟนๆ ไม่พลาดทุกการติดตาม</p>
+                    
+                    <div class="event-timeline" style="margin-bottom: 10px;">
+                        
+                        <!-- ตัวอย่างบล็อกตารางงาน (คุณสามารถแก้ข้อมูลได้เลย) -->
+                        <div class="event-item">
+                            <div class="event-header">
+                                <span><i class="fa-regular fa-clock"></i> 10 มิ.ย. 2026 | 14:00 น.</span>
+                                <span style="color: var(--green-clover);">Upcoming</span>
+                            </div>
+                            <h5 class="event-title">📍 (รออัปเดตตารางงาน)</h5>
+                            <p class="event-desc">สถานที่: (รออัปเดต) <br>รายละเอียด: กรุณารอประกาศอย่างเป็นทางการจากค่าย</p>
+                        </div>
+
+                        <!-- เพิ่มคิวงานใหม่โดยการก็อปปี้ <div class="event-item">...</div> นี้ไปวางต่อได้เลย -->
+                        
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dropdown 4: คลังความทรงจำ (My Special Memos) -->
+        <!-- Dropdown 4: Fan Project -->
+        <div class="dropdown-wrapper">
+            <button class="dropdown-btn">
+                <span>🎁 Fan Project</span>
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <div class="dropdown-inner">
+                    <p class="sub-dropdown-desc" style="margin-top: 10px;">รวบรวมโปรเจกต์น่ารักๆ ที่แฟนคลับร่วมกันจัดทำให้เพื่อซัพพอร์ตอังเปา</p>
+                    
+                    <div class="sub-dropdown-list" style="margin-bottom: 10px;">
+                        
+                        <!-- Fan Project 1 -->
+                        <div class="sub-dropdown-wrapper">
+                            <button class="sub-dropdown-btn">
+                                <span>🎂 20th Aungpao Birthday Project (2026)</span>
+                                <span class="sub-dropdown-icon">▼</span>
+                            </button>
+                            <div class="sub-dropdown-content">
+                                <div class="sub-dropdown-inner">
+                                    
+                                    <!-- Image Slider สำหรับ Project 1 -->
+                                    <div class="slider-container">
+                                        <div class="slider-track" id="slider-1" data-index="0">
+                                            <!-- รูปที่ 1 -->
+                                            <div class="slider-slide"><img src="https://placehold.co/600x300/1a162e/ff2a85?text=LED+Screen+Project" alt="Project 1"></div>
+                                            <!-- รูปที่ 2 -->
+                                            <div class="slider-slide"><img src="https://placehold.co/600x300/1a162e/00f0ff?text=TukTuk+Project" alt="Project 2"></div>
+                                            <!-- รูปที่ 3 -->
+                                            <div class="slider-slide"><img src="https://placehold.co/600x300/1a162e/00fa9a?text=Cafe+Event" alt="Project 3"></div>
+                                        </div>
+                                        <button class="slider-btn prev" onclick="moveSlide('slider-1', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                                        <button class="slider-btn next" onclick="moveSlide('slider-1', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+                                    </div>
+
+                                    <div class="info-list" style="margin-bottom: 5px;">
+                                        <li><strong>โปรเจกต์:</strong> วันเกิดอายุครบ 20 ปีบริบูรณ์ของอังเปา (LED Screen & Cafe)</li>
+                                        <li><strong>วันที่จัด:</strong> 15 มีนาคม - 25 มีนาคม 2026</li>
+                                        <li><strong>สถานที่:</strong> MBK Center, รถตุ๊กตุ๊กโซนสยาม, และคาเฟ่ GUMP's Ari</li>
+                                        <li><strong>Hashtag:</strong> #Aungpao20thBD</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fan Project 2 (บล็อกว่างสำหรับอนาคต) -->
+                        <div class="sub-dropdown-wrapper">
+                            <button class="sub-dropdown-btn">
+                                <span>🎬 (รออัปเดตโปรเจกต์ใหม่)</span>
+                                <span class="sub-dropdown-icon">▼</span>
+                            </button>
+                            <div class="sub-dropdown-content">
+                                <div class="sub-dropdown-inner">
+                                    <!-- Image Slider สำหรับ Project 2 -->
+                                    <div class="slider-container">
+                                        <div class="slider-track" id="slider-2" data-index="0">
+                                            <div class="slider-slide"><img src="https://placehold.co/600x300/1a162e/b3b3cc?text=Wait+for+update" alt="Empty"></div>
+                                        </div>
+                                        <button class="slider-btn prev" onclick="moveSlide('slider-2', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                                        <button class="slider-btn next" onclick="moveSlide('slider-2', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="info-list" style="margin-bottom: 5px;">
+                                        <li><strong>โปรเจกต์:</strong> (รอใส่ข้อมูล)</li>
+                                        <li><strong>วันที่จัด:</strong> (รอใส่ข้อมูล)</li>
+                                        <li><strong>สถานที่:</strong> (รอใส่ข้อมูล)</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown 5: ช่องทางติดตาม & ติดต่องาน -->
+        <div class="dropdown-wrapper">
+            <button class="dropdown-btn">
+                <span>📞 ช่องทางติดตาม & ติดต่องาน (Contact)</span>
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <div class="dropdown-inner">
+                    <p class="sub-dropdown-desc" style="margin-top: 10px; text-align: center;">สามารถติดตามอังเปาได้ตามโซเชียลมีเดียด้านล่าง หรือติดต่องานผ่านต้นสังกัด</p>
+                    
+                    <div class="contact-grid" style="margin-bottom: 10px;">
+                        
+                        <!-- กล่อง Social Media ของน้อง -->
+                        <div class="contact-card">
+                            <h3>📱 ออฟฟิเชียลโซเชียลมีเดีย</h3>
+                            <div class="social-buttons">
+                                <a href="https://x.com/20aungpao" target="_blank" class="btn-social"><i class="fa-brands fa-x-twitter"></i> X</a>
+                                <a href="https://www.instagram.com/20aungpao" target="_blank" class="btn-social ig"><i class="fa-brands fa-instagram"></i> IG</a>
+                                <a href="https://www.tiktok.com/@20aungpao" target="_blank" class="btn-social tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                                <a href="https://www.threads.net/@20aungpao" target="_blank" class="btn-social"><i class="fa-solid fa-at"></i> Threads</a>
+                            </div>
+                        </div>
+
+                        <!-- กล่องติดต่องาน GMMTV -->
+                        <div class="contact-card work">
+                            <h3>💼 ติดต่องาน (Work Contact)</h3>
+                            <div class="work-contact-info" style="text-align: left; display: inline-block;">
+                                <p style="font-weight: 600; color: var(--text-light); text-align: center; margin-bottom: 10px;">GMMTV CO., LTD.</p>
+                                <p><i class="fa-solid fa-phone"></i> Call : (+66)61-414-4046</p>
+                                <p><i class="fa-solid fa-building"></i> Line OA : @gmmtvartists_work</p>
+                                <p><i class="fa-solid fa-envelope"></i> Email : gmmtv.artists@gmail.com</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown 6: คลังความทรงจำ -->
         <div class="dropdown-wrapper">
             <button class="dropdown-btn">
                 <span>📸 My Special Memos (คลังรูปและความทรงจำ)</span>
@@ -1143,9 +691,7 @@
             </button>
             <div class="dropdown-content">
                 <div class="dropdown-inner">
-                    <div class="memo-grid">
-                        
-                        <!-- การ์ดภาพ 1 -->
+                    <div class="memo-grid" style="margin-top:10px; margin-bottom:10px;">
                         <div class="memo-card">
                             <img src="https://placehold.co/400x200/1a162e/ff2a85?text=First+Impression" alt="Memo 1" class="card-img" onerror="this.src='https://placehold.co/400x200/1a162e/ff2a85?text=Aungpao'">
                             <div class="card-content">
@@ -1154,8 +700,6 @@
                                 <p class="card-text">บันทึกโมเมนต์สุดน่ารักของอังเปาที่ทำให้เราโดนตกเข้าด้อม</p>
                             </div>
                         </div>
-
-                        <!-- การ์ดภาพ 2 -->
                         <div class="memo-card">
                             <img src="https://placehold.co/400x200/1a162e/8a2be2?text=Stage+Event" alt="Memo 2" class="card-img" onerror="this.src='https://placehold.co/400x200/1a162e/8a2be2?text=Aungpao'">
                             <div class="card-content">
@@ -1164,7 +708,6 @@
                                 <p class="card-text">รวบรวมผลงานการแสดงสุดเท่จากงานอีเวนต์ต่างๆ</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -1172,7 +715,7 @@
 
     </div>
 
-    <!-- 🛠️ JavaScript ควบคุมการทำงานยืด-หดของ Dropdowns ทั้งหมดแบบไร้บั๊ก -->
+    <!-- 🛠️ JavaScript -->
     <script>
         // --- 1. ควบคุม Dropdown หมวดหมู่หลักชั้นนอกสุด (Level 1) ---
         const mainDropdowns = document.querySelectorAll('.dropdown-wrapper');
@@ -1183,7 +726,6 @@
             btn.addEventListener('click', () => {
                 const isActive = dropdown.classList.contains('active');
                 
-                // สั่งพับปิดหมวดหลักอื่นๆ เพื่อความเป็นระเบียบและประหยัดพื้นที่จอ
                 mainDropdowns.forEach(other => {
                     other.classList.remove('active');
                 });
@@ -1194,18 +736,19 @@
             });
         });
 
-        // --- 2. ควบคุม Sub-Dropdowns ใต้ผลงานเด่น (Level 2) ---
+        // --- 2. ควบคุม Sub-Dropdowns ใต้ผลงานเด่น/โปรเจกต์ (Level 2) ---
         const subDropdowns = document.querySelectorAll('.sub-dropdown-wrapper');
 
         subDropdowns.forEach(subDropdown => {
             const btn = subDropdown.querySelector('.sub-dropdown-btn');
 
             btn.addEventListener('click', (e) => {
-                e.stopPropagation(); // ห้ามมิให้ส่งผลกระทบไปกระตุ้นคำสั่งการปิดของ Dropdown หลักด้านบน
+                e.stopPropagation(); 
                 const isActive = subDropdown.classList.contains('active');
 
-                // พับปิด Sub-Dropdown ตัวอื่นในกลุ่มงานเดียวกันก่อน
-                subDropdowns.forEach(other => {
+                // พับปิด Sub-Dropdown ตัวอื่นในบล็อกเดียวกัน
+                const siblings = subDropdown.parentElement.querySelectorAll(':scope > .sub-dropdown-wrapper');
+                siblings.forEach(other => {
                     other.classList.remove('active');
                 });
 
@@ -1222,10 +765,9 @@
             const titleBtn = item.querySelector('.series-title-btn');
             
             titleBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // ป้องกันการกระจายความสูงสะท้อนปิดแม่
+                e.stopPropagation(); 
                 const isOpen = item.classList.contains('active');
                 
-                // สั่งปิดรายชื่อซีรีส์อื่นก่อนหน้าทั้งหมด
                 seriesItems.forEach(other => {
                     other.classList.remove('active');
                 });
@@ -1235,6 +777,29 @@
                 }
             });
         });
+
+        // --- 4. ควบคุม Image Slider (ซ้าย-ขวา) สำหรับ Fan Project ---
+        function moveSlide(trackId, direction) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            
+            const slides = track.querySelectorAll('.slider-slide');
+            if (slides.length <= 1) return; // ไม่ต้องเลื่อนถ้ามีรูปเดียว
+
+            let currentIndex = parseInt(track.getAttribute('data-index') || 0);
+            currentIndex += direction;
+
+            // วนลูปกลับไปภาพแรก/ภาพสุดท้าย
+            if (currentIndex < 0) {
+                currentIndex = slides.length - 1;
+            } else if (currentIndex >= slides.length) {
+                currentIndex = 0;
+            }
+
+            // เลื่อน Track ด้วย Transform X (ลดการกระตุก)
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            track.setAttribute('data-index', currentIndex);
+        }
     </script>
 
 </body>
