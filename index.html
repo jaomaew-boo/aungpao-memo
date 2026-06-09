@@ -37,35 +37,97 @@
 
         h1, h2, h3, h4, h5 { font-family: 'Mitr', sans-serif; }
 
-        /* --- 🎬 Header / Cover Section --- */
+        /* --- 🎬 Header / Cover Section (อัปเกรดเป็น Gallery) --- */
         header {
-            min-height: 45vh;
+            min-height: 55vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* คอนเทนเนอร์สำหรับรูปภาพหน้าปก */
+        .cover-gallery {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 250px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* สไตล์รูปรวมๆ */
+        .cover-photo {
+            position: absolute;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+
+        /* รูปที่ 1 (ซ้าย) */
+        .cover-photo:nth-child(1) {
+            width: 160px;
+            height: 200px;
+            left: 10%;
+            transform: rotate(-10deg);
+            z-index: 1;
+            border-color: var(--pink-neon);
+        }
+
+        /* รูปที่ 2 (ขวา) */
+        .cover-photo:nth-child(2) {
+            width: 160px;
+            height: 200px;
+            right: 10%;
+            transform: rotate(10deg);
+            z-index: 1;
+            border-color: var(--blue-neon);
+        }
+
+        /* รูปที่ 3 (ตรงกลาง ใหญ่สุด) */
+        .cover-photo:nth-child(3) {
+            width: 200px;
+            height: 250px;
+            z-index: 2;
+            border-color: var(--purple-cyber);
+            transform: translateY(-10px);
+        }
+
+        /* Hover Effect สำหรับรูปปก */
+        .cover-photo:hover {
+            z-index: 5;
+            transform: scale(1.1) rotate(0deg);
+            box-shadow: 0 15px 40px rgba(255, 42, 133, 0.4);
+            border-color: var(--text-light);
         }
 
         .header-logo {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 600;
             background: linear-gradient(45deg, var(--pink-neon), var(--purple-cyber));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(255, 42, 133, 0.4);
             margin-bottom: 0.5rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            z-index: 10;
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-gray);
-            margin-bottom: 2rem;
             border-bottom: 2px solid var(--pink-neon);
             padding-bottom: 5px;
             display: inline-block;
+            z-index: 10;
         }
 
         .container { max-width: 950px; margin: 0 auto; padding: 0 1.5rem 5rem 1.5rem; }
@@ -139,7 +201,6 @@
         .sub-dropdown-wrapper.active > .sub-dropdown-content > .sub-dropdown-inner { padding: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
         .sub-dropdown-wrapper.active .sub-dropdown-icon { transform: rotate(180deg); }
 
-        /* --- STREAMING_CHUNK: Styling inner components (Series, Events, Contact, Slider) --- */
         /* 3. Series Items */
         .series-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
         .series-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; }
@@ -274,13 +335,37 @@
         @media (max-width: 768px) {
             .profile-container { flex-direction: column; text-align: center; }
             .contact-grid { grid-template-columns: 1fr; }
+            
+            /* ปรับขนาดแกลเลอรีรูปบนมือถือ */
+            .cover-photo:nth-child(1) { width: 120px; height: 150px; left: 5%; }
+            .cover-photo:nth-child(2) { width: 120px; height: 150px; right: 5%; }
+            .cover-photo:nth-child(3) { width: 150px; height: 190px; }
+            .cover-gallery { height: 200px; }
+        }
+        
+        /* --- Footer ข้อความล่างสุด --- */
+        .site-footer {
+            padding: 20px;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            
+            /* 💡 เลือกจัดตำแหน่ง: */
+            text-align: right;  /* มุมขวาล่าง */
+            /* text-align: left; */   /* มุมซ้ายล่าง */
+            /* text-align: center; */ /* ตรงกลาง (แนะนำครับ วางบนมือถือแล้วจะดูสวยสมดุล) */
         }
     </style>
 </head>
 <body>
 
-    <!-- หน้าปกหลัก -->
+    <!-- หน้าปกแกลเลอรี (Cover Gallery) -->
     <header>
+        <div class="cover-gallery">
+            <!-- 📸 ใส่รูปอังเปา 3 รูปที่อยากให้โชว์เป็นหน้าปก -->
+            <img src="images/cover1.jpg" alt="Aungpao 1" class="cover-photo" onerror="this.src='https://placehold.co/160x200/1a162e/ff2a85?text=Photo+1'">
+            <img src="images/cover2.jpg" alt="Aungpao 2" class="cover-photo" onerror="this.src='https://placehold.co/160x200/1a162e/00f0ff?text=Photo+2'">
+            <img src="images/cover3.jpg" alt="Aungpao Center" class="cover-photo" onerror="this.src='https://placehold.co/200x250/1a162e/8a2be2?text=Photo+3'">
+        </div>
         <h1 class="header-logo">AUNGPAO MEMO</h1>
         <div class="subtitle">คลังความทรงจำของ อังเปา โอชิริส ✨</div>
     </header>
@@ -431,7 +516,7 @@
                                                 <i class="fa-brands fa-youtube"></i> ชมสเตจรอบชิงชนะเลิศ
                                             </a>
                                         </div>
-                    
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -583,7 +668,7 @@
                                                 </div>
                                             </div>
                                         </div>
-        
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -641,7 +726,6 @@
                                                 <i class="fa-solid fa-circle-play"></i> ฟังเพลง
                                             </a>
                                         </div>
-                                    
                                     </div>
                                 </div>
                             </div>
@@ -657,6 +741,7 @@
                                 <div class="sub-dropdown-inner">
                                     <p class="sub-dropdown-desc" style="margin-bottom: 1rem;">คลังเก็บความประทับใจเวทีใหญ่ (Music Festival & Concert) ทั้งในฐานะศิลปินรับเชิญ ศิลปินเดี่ยว และในนามวง</p>
                                     <div class="event-timeline">
+                                        <!-- ลิสต์คอนเสิร์ต -->
                                         <div class="event-item purple-line">
                                             <div class="event-header purple-header"><span><i class="fa-solid fa-microphone-lines"></i> 2567</span><span>#Guest</span></div>
                                             <h5 class="event-title">BABII 24/7 Concert</h5>
@@ -758,7 +843,7 @@
                         <div class="event-item">
                             <div class="event-header">
                                 <span><i class="fa-regular fa-clock"></i> 10 มิ.ย. 2569 | 19:00 น.</span>
-                                <span style="color: var(--green-clover);">Upcoming</span>
+                                <span style="color: var(--green-clover);">#CLO_VER</span>
                             </div>
                             <h5 class="event-title">📍 Presstour Lonely Girl</h5>
                             <p class="event-desc">สถานที่: Studio Flex 104.5 @ LIDO CONNECT <br>รายละเอียด: Presstour Lonely Girl At Flex 104.5</p>
@@ -833,7 +918,7 @@
                                 <div class="sub-dropdown-inner">
                                     <!-- Image Slider สำหรับ Project 1 -->
                                     <div class="slider-container">
-                                        <div class="slider-track" id="slider-1" data-index="0">
+                                        <div class="slider-track" id="slider-2" data-index="0">
                                             <!-- รูปที่ 1 -->
                                             <div class="slider-slide"><img src="https://placehold.co/600x300/1a162e/ff2a85?text=Project" alt="Project 1"></div>
                                             <!-- รูปที่ 2 -->
@@ -841,8 +926,8 @@
                                             <!-- รูปที่ 3 -->
                                             <div class="slider-slide"><img src="https://placehold.co/600x300/1a162e/00fa9a?text=Project" alt="Project 3"></div>
                                         </div>
-                                        <button class="slider-btn prev" onclick="moveSlide('slider-1', -1)"><i class="fa-solid fa-chevron-left"></i></button>
-                                        <button class="slider-btn next" onclick="moveSlide('slider-1', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+                                        <button class="slider-btn prev" onclick="moveSlide('slider-2', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+                                        <button class="slider-btn next" onclick="moveSlide('slider-2', 1)"><i class="fa-solid fa-chevron-right"></i></button>
                                     </div>
 
                                     <div class="info-list" style="margin-bottom: 5px;">
@@ -902,14 +987,14 @@
         <!-- Dropdown 6: คลังความทรงจำ -->
         <div class="dropdown-wrapper">
             <button class="dropdown-btn">
-                <span>📸 My Special Memos</span>
+                <span>📸 Special Memos</span>
                 <span class="dropdown-icon">▼</span>
             </button>
             <div class="dropdown-content">
                 <div class="dropdown-inner">
                     <div class="memo-grid" style="margin-top:10px; margin-bottom:10px;">
                         <div class="memo-card">
-                            <img src="https://placehold.co/400x200/1a162e/ff2a85?text=First+Impression" alt="Memo 1" class="card-img" onerror="this.src='https://placehold.co/400x200/1a162e/ff2a85?text=Aungpao'">
+                            <img src="https://placehold.co/400x200/1a162e/ff2a85?text=(รออัพเดต)" alt="Memo 1" class="card-img" onerror="this.src='https://placehold.co/400x200/1a162e/ff2a85?text=Aungpao'">
                             <div class="card-content">
                                 <span class="card-tag">(รออัพเดต)</span>
                                 <h3 class="card-title">(รออัพเดต)</h3>
@@ -917,9 +1002,9 @@
                             </div>
                         </div>
                         <div class="memo-card">
-                            <img src="https://placehold.co/400x200/1a162e/8a2be2?text=Stage+Event" alt="Memo 2" class="card-img" onerror="this.src='https://placehold.co/400x200/1a162e/8a2be2?text=Aungpao'">
+                            <img src="https://placehold.co/400x200/1a162e/8a2be2?text=(รออัพเดต)" alt="Memo 2" class="card-img" onerror="this.src='https://placehold.co/400x200/1a162e/8a2be2?text=Aungpao'">
                             <div class="card-content">
-                                <span class="card-tag">Stage / Event</span>
+                                <span class="card-tag">(รออัพเดต)</span>
                                 <h3 class="card-title">(รออัพเดต)</h3>
                                 <p class="card-text">(รออัพเดต)</p>
                             </div>
@@ -930,6 +1015,11 @@
         </div>
 
     </div>
+
+    <!-- 📌 ข้อความล่างสุดของเว็บ -->
+    <footer class="site-footer">
+        © 2026 Aungpao Memo. Made with 🩷 by Boboo(jaomaew_boo)
+    </footer>
 
     <!-- 🛠️ JavaScript -->
     <script>
@@ -1017,6 +1107,7 @@
             track.setAttribute('data-index', currentIndex);
         }
     </script>
-
+    
 </body>
 </html>
+
