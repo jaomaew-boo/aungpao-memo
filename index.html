@@ -50,57 +50,26 @@
             overflow: hidden;
         }
 
-        /* คอนเทนเนอร์สำหรับรูปภาพหน้าปก */
-        .cover-gallery {
+        /* --- 🎬 Header Slider --- */
+        .header-slider-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            height: 250px;
+            max-width: 800px; /* ปรับความกว้างสูงสุดของหน้าปก */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--pink-neon);
+            box-shadow: 0 10px 30px rgba(255, 42, 133, 0.2);
+            z-index: 5;
             margin-bottom: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        /* สไตล์รูปรวมๆ */
-        .cover-photo {
-            position: absolute;
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.1);
-            transition: all 0.4s ease;
+        .header-cover-photo {
+            width: 100%;
+            height: 350px; /* ปรับความสูงของรูปหน้าปก */
+            object-fit: cover; /* ให้รูปเต็มกรอบพอดี ไม่เบี้ยว */
+            object-position: center top; /* เน้นให้อยู่กึ่งกลางค่อนไปด้านบน (เห็นหน้าชัดๆ) */
         }
-
-        /* รูปที่ 1 (ซ้าย) */
-        .cover-photo:nth-child(1) {
-            width: 160px;
-            height: 200px;
-            left: 10%;
-            transform: rotate(-10deg);
-            z-index: 1;
-            border-color: var(--pink-neon);
-        }
-
-        /* รูปที่ 2 (ขวา) */
-        .cover-photo:nth-child(2) {
-            width: 160px;
-            height: 200px;
-            right: 10%;
-            transform: rotate(10deg);
-            z-index: 1;
-            border-color: var(--blue-neon);
-        }
-
-        /* รูปที่ 3 (ตรงกลาง ใหญ่สุด) */
-        .cover-photo:nth-child(3) {
-            width: 200px;
-            height: 250px;
-            z-index: 2;
-            border-color: var(--purple-cyber);
-            transform: translateY(-10px);
-        }
-
+        
         /* Hover Effect สำหรับรูปปก */
         .cover-photo:hover {
             z-index: 5;
@@ -336,11 +305,10 @@
             .profile-container { flex-direction: column; text-align: center; }
             .contact-grid { grid-template-columns: 1fr; }
             
-            /* ปรับขนาดแกลเลอรีรูปบนมือถือ */
-            .cover-photo:nth-child(1) { width: 120px; height: 150px; left: 5%; }
-            .cover-photo:nth-child(2) { width: 120px; height: 150px; right: 5%; }
-            .cover-photo:nth-child(3) { width: 150px; height: 190px; }
-            .cover-gallery { height: 200px; }
+            /* ปรับขนาดแกลเลอรีรูปหน้าปกแบบ Slider บนมือถือ */
+            .header-cover-photo { 
+                height: 250px; 
+            }
         }
         
         /* --- Footer ข้อความล่างสุด --- */
@@ -360,12 +328,19 @@
 
     <!-- หน้าปกแกลเลอรี (Cover Gallery) -->
     <header>
-        <div class="cover-gallery">
-            <!-- 📸 ใส่รูปอังเปา 3 รูปที่อยากให้โชว์เป็นหน้าปก -->
-            <img src="images/IMG_3155.JPG" alt="Aungpao 1" class="cover-photo" onerror="this.src='https://placehold.co/160x200/1a162e/ff2a85?text=Photo+1'">
-            <img src="images/cover.JPG" alt="Aungpao 2" class="cover-photo" onerror="this.src='https://placehold.co/160x200/1a162e/00f0ff?text=Photo+2'">
-            <img src="images/IMG_3084.JPG" alt="Aungpao Center" class="cover-photo" onerror="this.src='https://placehold.co/200x250/1a162e/8a2be2?text=Photo+3'">
+        <div class="header-slider-container">
+        <div class="slider-track" id="header-slider" data-index="0">
+            <!-- 📸 ใส่รูปอังเปาแนวนอนได้แบบจัดเต็ม เพิ่มบรรทัดได้เรื่อยๆ ครับ -->
+            <div class="slider-slide"><img src="images/IMG_3155.JPG" alt="Aungpao 1" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/ff2a85?text=Cover+1](https://placehold.co/800x400/1a162e/ff2a85?text=Cover+1)'"></div>
+            <div class="slider-slide"><img src="images/cover.JPG" alt="Aungpao 2" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/00f0ff?text=Cover+2](https://placehold.co/800x400/1a162e/00f0ff?text=Cover+2)'"></div>
+            <div class="slider-slide"><img src="images/IMG_3084.JPG" alt="Aungpao 3" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/00fa9a?text=Cover+3](https://placehold.co/800x400/1a162e/00fa9a?text=Cover+3)'"></div>
+            <div class="slider-slide"><img src="images/cover4.jpg" alt="Aungpao 4" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/8a2be2?text=Cover+4](https://placehold.co/800x400/1a162e/8a2be2?text=Cover+4)'"></div>
         </div>
+        <!-- ปุ่มกดซ้ายขวา (ใช้ฟังก์ชันเดิมได้เลย) -->
+        <button class="slider-btn prev" onclick="moveSlide('header-slider', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-btn next" onclick="moveSlide('header-slider', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
         <h1 class="header-logo">AUNGPAO MEMO</h1>
         <div class="subtitle">คลังความทรงจำของ อังเปา โอชิริส ✨</div>
     </header>
