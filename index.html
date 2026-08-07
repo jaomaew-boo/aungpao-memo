@@ -260,14 +260,6 @@
         .clover-song-title { font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
         .clover-song-date { font-size: 0.75rem; color: var(--text-gray); }
 
-        .mv-reaction-inner {
-            padding: 0 1.5rem;
-        }
-
-        .sub-dropdown-wrapper.active > .sub-dropdown-content > .mv-reaction-inner {
-            padding: 15px;
-        }
-
         /* --- IMAGE SLIDER FOR FAN PROJECTS --- */
         .slider-container {
             position: relative; width: 100%; border-radius: 8px; overflow: hidden;
@@ -902,48 +894,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- แกลเลอรี MV Reaction (ใช้ระบบ Dropdown เดียวกับซีรีส์) -->
-                                    <div class="sub-dropdown-wrapper green-border">
-                                        <button class="sub-dropdown-btn">
-                                            <span>🎶 MV Reaction</span>
-                                            <span class="series-arrow">▼</span>
-                                        </button>
-                                        <div class="sub-dropdown-content">
-                                            <div class="sub-dropdown-inner mv-reaction-inner">
-            
-                                                <!-- List รายการ Reaction -->
-                                                <div class="series-list">
-                                                    <div class="series-item" style="margin-bottom: 8px;">
-                                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;">
-                                                            <span class="clover-song-title" style="font-size: 0.9rem;">คนคุ้นคอย (Next To You)</span>
-                                                            <a href="https://youtu.be/NmteR0Zksxg?si=7li9y4KUKYoL1khH" target="_blank" class="work-btn-link" style="color: #FF85A1; border-bottom-color: #FF85A1; margin-top:0;">
-                                                                <i class="fa-solid fa-circle-play"></i> ชมคลิป
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="series-item" style="margin-bottom: 8px;">
-                                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;">
-                                                            <span class="clover-song-title" style="font-size: 0.9rem;">Bad Boy No 'DO'</span>
-                                                            <a href="https://youtu.be/dqahXbB93Ms?si=9I8nJtZIhKExarRA" target="_blank" class="work-btn-link" style="color: #FF85A1; border-bottom-color: #FF85A1; margin-top:0;">
-                                                                <i class="fa-solid fa-circle-play"></i> ชมคลิป
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="series-item" style="margin-bottom: 8px;">
-                                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;">
-                                                            <span class="clover-song-title" style="font-size: 0.9rem;">Lonely Girl</span>
-                                                            <a href="https://youtu.be/xZjp-TzRTo0?si=UH9YdapxM95JC7rv" target="_blank" class="work-btn-link" style="color: #FF85A1; border-bottom-color: #FF85A1; margin-top:0;">
-                                                                <i class="fa-solid fa-circle-play"></i> ชมคลิป
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     
                                 </div>
                             </div>
@@ -1315,8 +1265,6 @@
 
         seriesItems.forEach(item => {
             const titleBtn = item.querySelector('.series-title-btn');
-            
-            if (!titleBtn) return;
             
             titleBtn.addEventListener('click', (e) => {
                 e.stopPropagation(); 
