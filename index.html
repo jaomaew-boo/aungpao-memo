@@ -260,6 +260,14 @@
         .clover-song-title { font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
         .clover-song-date { font-size: 0.75rem; color: var(--text-gray); }
 
+        .mv-reaction-inner {
+            padding: 0 1.5rem;
+        }
+
+        .sub-dropdown-wrapper.active > .sub-dropdown-content > .mv-reaction-inner {
+            padding: 15px;
+        }
+
         /* --- IMAGE SLIDER FOR FAN PROJECTS --- */
         .slider-container {
             position: relative; width: 100%; border-radius: 8px; overflow: hidden;
@@ -901,12 +909,10 @@
                                             <span class="sub-dropdown-icon">▼</span>
                                         </button>
                                         <div class="sub-dropdown-content">
-                                            <div class="sub-dropdown-inner" style="padding-top: 15px; padding-bottom: 15px;">
+                                            <div class="sub-dropdown-inner mv-reaction-inner">
             
                                                 <!-- List รายการ Reaction -->
                                                 <div class="series-list">
-                
-                                                    <!-- Reaction 1 -->
                                                     <div class="series-item" style="margin-bottom: 8px;">
                                                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;">
                                                             <span class="clover-song-title" style="font-size: 0.9rem;">คนคุ้นคอย (Next To You)</span>
@@ -915,8 +921,7 @@
                                                             </a>
                                                         </div>
                                                     </div>
-
-                                                    <!-- Reaction 2 -->
+                                                    
                                                     <div class="series-item" style="margin-bottom: 8px;">
                                                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;">
                                                             <span class="clover-song-title" style="font-size: 0.9rem;">Bad Boy No 'DO'</span>
@@ -925,8 +930,7 @@
                                                             </a>
                                                         </div>
                                                     </div>
-
-                                                    <!-- Reaction 3 -->
+                                                    
                                                     <div class="series-item" style="margin-bottom: 8px;">
                                                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;">
                                                             <span class="clover-song-title" style="font-size: 0.9rem;">Lonely Girl</span>
@@ -935,6 +939,7 @@
                                                             </a>
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -1310,6 +1315,8 @@
 
         seriesItems.forEach(item => {
             const titleBtn = item.querySelector('.series-title-btn');
+            
+            if (!titleBtn) return;
             
             titleBtn.addEventListener('click', (e) => {
                 e.stopPropagation(); 
