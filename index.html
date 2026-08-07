@@ -61,25 +61,38 @@
             overflow: hidden;
         }
 
-        /* --- 🎬 Header Slider --- */
-        .header-slider-container {
-            position: relative;
+        /* --- 🎬 Header Collage --- */
+        .pastel-collage {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* แบ่งพื้นที่เป็น 2 ส่วน: ซ้ายใหญ่ ขวาเล็ก */
+            grid-template-rows: repeat(2, 1fr);
+            gap: 15px; /* ช่องว่างระหว่างรูป */
             width: 100%;
-            max-width: 800px;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 3px solid #FFF;
-            box-shadow: 0 15px 35px rgba(255, 183, 206, 0.3); /* เงาสีชมพูพาสเทล */
-            z-index: 5;
+            max-width: 850px;
+            margin-top: 2rem;
             margin-bottom: 2rem;
         }
 
-        .header-cover-photo {
+        .collage-item {
             width: 100%;
-            height: 350px;
             object-fit: cover;
-            object-position: center top;
-            background-color: #F0F0F0;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 183, 206, 0.4); /* เงาสีชมพูละมุน */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .collage-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 183, 206, 0.6);
+        }
+
+        .main-pic {
+            grid-row: 1 / span 2;
+            height: 400px; /* ความสูงของรูปใหญ่สุด */
+        }
+
+        .sub-pic {
+            height: 192px; /* ความสูงของรูปเล็ก */
         }
         
         .header-logo {
@@ -301,7 +314,19 @@
         @media (max-width: 768px) {
             .profile-container { flex-direction: column; text-align: center; }
             .contact-grid { grid-template-columns: 1fr; }
-            .header-cover-photo { height: 250px; }
+            
+            /* การจัดเรียงรูปปกบนมือถือ */
+            .pastel-collage {
+                grid-template-columns: 1fr 1fr; /* แบ่ง 2 ช่องเท่ากัน */
+                grid-template-rows: auto auto;
+            }
+            .main-pic {
+                grid-column: 1 / span 2; /* รูปใหญ่ให้กว้างเต็มจอ */
+                height: 300px;
+            }
+            .sub-pic {
+                height: 150px;
+            }
         }
         
         /* --- Footer ข้อความล่างสุด --- */
@@ -315,23 +340,21 @@
 </head>
 <body>
 
-    <!-- หน้าปกแกลเลอรี (Cover Gallery) -->
+    <!-- หน้าปก (Pastel Collage) -->
     <header>
-        <div class="header-slider-container">
-        <div class="slider-track" id="header-slider" data-index="0">
-            <!-- 📸 ใส่รูปอังเปาแนวนอนได้แบบจัดเต็ม เพิ่มบรรทัดได้เรื่อยๆ ครับ -->
-            <div class="slider-slide"><img src="images/IMG_3155.JPG" alt="Aungpao 1" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/ff2a85?text=Cover+1](https://placehold.co/800x400/1a162e/ff2a85?text=Cover+1)'"></div>
-            <div class="slider-slide"><img src="images/cover.JPG" alt="Aungpao 2" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/00f0ff?text=Cover+2](https://placehold.co/800x400/1a162e/00f0ff?text=Cover+2)'"></div>
-            <div class="slider-slide"><img src="images/IMG_3084.JPG" alt="Aungpao 3" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/00fa9a?text=Cover+3](https://placehold.co/800x400/1a162e/00fa9a?text=Cover+3)'"></div>
-            <div class="slider-slide"><img src="images/IMG_3091.JPG" alt="Aungpao 4" class="header-cover-photo" onerror="this.src='[https://placehold.co/800x400/1a162e/8a2be2?text=Cover+4](https://placehold.co/800x400/1a162e/8a2be2?text=Cover+4)'"></div>
-        </div>
-        <!-- ปุ่มกดซ้ายขวา (ใช้ฟังก์ชันเดิมได้เลย) -->
-        <button class="slider-btn prev" onclick="moveSlide('header-slider', -1)"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="slider-btn next" onclick="moveSlide('header-slider', 1)"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
         <h1 class="header-logo">AUNGPAO MEMO</h1>
         <div class="subtitle">คลังความทรงจำของ อังเปา โอชิริส ✨</div>
+        
+        <div class="pastel-collage">
+            <!-- รูปซ้าย (รูปหลัก ใหญ่สุด) -->
+            <img src="images/IMG_3155.JPG" alt="Aungpao Main" class="collage-item main-pic" onerror="this.src='https://placehold.co/500x400/FDFBF7/FFB7CE?text=Main+Pic'">
+            
+            <!-- รูปขวาบน -->
+            <img src="images/cover.JPG" alt="Aungpao Sub 1" class="collage-item sub-pic" onerror="this.src='https://placehold.co/300x190/FDFBF7/AEE2FF?text=Pic+2'">
+            
+            <!-- รูปขวาล่าง -->
+            <img src="images/IMG_3084.JPG" alt="Aungpao Sub 2" class="collage-item sub-pic" onerror="this.src='https://placehold.co/300x190/FDFBF7/B7E4C7?text=Pic+3'">
+        </div>
     </header>
 
     <div class="container">
